@@ -1,11 +1,10 @@
-# Welcome to your Jupyter Book
+# **Bienvenido a GeoPython**
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+Este libro es una recopilación de tutoriales y proyectos desarrollados con Python para el análisis geoespacial. No es un material de consulta, sino un espacio donde encontrarás ejemplos prácticos y soluciones aplicadas a distintos retos en GeoPython.
 
-Check out the content pages bundled with this sample book to see more.
+Cada tutorial está basado en proyectos reales, con código funcional que puedes adaptar a tus propias necesidades. El objetivo es compartir experiencias y métodos útiles para el procesamiento y visualización de datos espaciales.
+
+¡Espero que te resulte útil! 🚀🌍
 
 ```{tableofcontents}
 ```

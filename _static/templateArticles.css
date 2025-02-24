@@ -17,30 +17,30 @@ h2 {
 }
 
 h3{
-    margin-bottom: 20px;
-    margin-top: 20px;
-    font-size: 16px;
+    color: #2c9690 !important;
+    font-size: 18px;
+    font-weight: bold !important;
 }
 
-/* Bloques de código por si falla "prisma"*/
-.code-container {
-    /*background-color: #f7faf9ea;*/
-    color: #08473a;
-    padding: 10px;
-    border-radius: 2px;
-    margin: 20px 0;
-    font-family: "Courier New", Courier, monospace;
+/* Alinea los indices a la izquierda */
+.toctree-l1, .toc-h2, .toc-h3{
+    text-align: left !important;
+}
+
+.output.highlight-myst-ansi.notranslate .highlight pre{
+    background-color: #fff;
     font-size: 13px;
-    overflow-x: auto;
-    /*border: 0.5px solid #e3eeec;*/
+    padding: 10px;
+    border: 1px solid #f2f2f2 !important;
 }
 
-.code-container pre {
-    margin: 0;
-    white-space: pre-wrap;
-}
 
 /* Imágenes responsivas */
+
+.logo__image{
+    width: 120px !important;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -49,29 +49,30 @@ img {
 }
 
 /* Párrafos y listas */
-p, .content ul {
+p, ul {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     line-height: 1.5;
     text-align: justify;
     font-size: 14px;
 }
 
-.content ul {
+ul {
     list-style: square;
     padding-left: 30px;
     padding-bottom: 15px;
     padding-top: 15px;
 }
 
-.content ul li::marker {
+ul li::marker {
     color: #24726e;
     font-size: 1.5em;
 }
 
 /* Tablas */
 table {
-    border-collapse: collapse;
-    font-size: 12px;
+    border-collapse: collapse !important;
+    font-size: 13px !important;
+    width: 100% !important;
 }
 
 th, td {
@@ -84,7 +85,7 @@ th, td {
 
 thead th {
     font-weight: bold;
-    border-bottom: 1px solid #215c4a; /* Línea negra bajo la cabecera */
+    border-bottom: 1px solid #215c4a !important; /* Línea negra bajo la cabecera */
 }
 
 tr:last-child {
@@ -92,44 +93,47 @@ tr:last-child {
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2; /* Gris claro */
+    background-color: #f2f2f2 !important; /* Gris claro */
 }
 
 tr:nth-child(odd) {
-    background-color: #ffffff; /* Blanco */
+    background-color: #ffffff !important; /* Blanco */
 }
 
+.extra_footer {
+    color: rgb(19, 99, 88);
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+	max-width: 75%;
+}
+
+.extra_footer .social-links a img {
+    width: 30px !important;
+    filter: brightness(1.2); /* Resalta los íconos verdes */
+    transition: transform 0.3s ease;
+	display: inline;
+}
+
+.extra-footer .social-links a img:hover {
+    transform: scale(1.2);
+}
+
+.component-author {
+    display: none !important;
+}
+
+
 /* Responsive */
-@media screen and (max-width: 768px) {
-    .indice {
-        width: 50px;
-        height: 50px;
-        padding: 0;
-        overflow: hidden;
-        transform: translateX(-100%);
-    }
-    
-    .indice.active {
-        width: 250px;
-        height: 100vh;
-        padding: 20px;
-        transform: translateX(0);
-    }
-    
-    .menu-btn {
-        display: block;
-    }
+@media screen and (max-width: 768px) {    
 
-    section.content {
-        width: 100%;
-        margin-left: 0;
-        padding: 15px;
+    h1 {
+        font-size: 20px;
     }
-
-    header {
-        font-size: 15px;
-    }
-    p, .content ul{
+    p, ul{
         font-size: 12px;
     }
 
@@ -137,11 +141,14 @@ tr:nth-child(odd) {
         border-collapse: collapse;
         font-size: 10px;
     }
+	
+	.extra_footer {
+		max-width: 100%;
+	}
 }
 
 @media screen and (max-width: 480px) {
-    header {
-        font-size: 16px;
-        padding: 10px;
+    h1 {
+        font-size: 18px;
     }
 }
