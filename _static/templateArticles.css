@@ -28,10 +28,9 @@ h3{
 }
 
 .output.highlight-myst-ansi.notranslate .highlight pre{
-    background-color: #fff;
+    background-color: none;
     font-size: 13px;
     padding: 10px;
-    border: 1px solid #f2f2f2 !important;
 }
 
 
@@ -92,8 +91,6 @@ tr:last-child {
     border-bottom: none; /* Evita línea extra en la última fila */
 }
 
-
-
 .extra_footer {
     color: rgb(19, 99, 88);
     text-align: center;
@@ -119,7 +116,6 @@ tr:last-child {
 .component-author {
     display: none !important;
 }
-
 
 /* Responsive */
 @media screen and (max-width: 768px) {    
