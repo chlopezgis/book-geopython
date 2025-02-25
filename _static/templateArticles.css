@@ -92,13 +92,7 @@ tr:last-child {
     border-bottom: none; /* Evita línea extra en la última fila */
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2 !important; /* Gris claro */
-}
 
-tr:nth-child(odd) {
-    background-color: #ffffff !important; /* Blanco */
-}
 
 .extra_footer {
     color: rgb(19, 99, 88);
