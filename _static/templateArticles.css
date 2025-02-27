@@ -30,9 +30,12 @@ h3{
 .output.highlight-myst-ansi.notranslate .highlight pre{
     background-color: none;
     font-size: 13px;
-    padding: 10px;
 }
 
+.highlight-ipython3.notranslate .highlight pre{
+    background-color: none;
+    font-size: 13px;
+}
 
 /* Imágenes responsivas */
 
@@ -122,6 +125,14 @@ tr:last-child {
     }
     p, ul{
         font-size: 12px;
+    }
+
+    .output.highlight-myst-ansi.notranslate .highlight pre{
+        font-size: 11px;
+    }
+
+    .highlight-ipython3.notranslate .highlight pre{
+        font-size: 11px;
     }
 
     table {
