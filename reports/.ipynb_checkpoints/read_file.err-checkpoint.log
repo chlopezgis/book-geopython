@@ -30,9 +30,9 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-start2 = time.time()
-data2 = gpd.read_file(file, layer='puertas')
-print("Tiempo con Fiona:", time.time() - start2)
-print('Registros:', data2.shape)
+start = time.time()
+data = gpd.read_file(file, layer='puertas', engine="pyogrio")
+print("Tiempo con Pyogrio:", time.time() - start)
+print('Registros:', data.shape)
 -------------------
 
