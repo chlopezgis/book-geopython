@@ -58,6 +58,10 @@ p, ul {
     font-size: 14px;
 }
 
+.prev-next-title{
+    text-align: center !important;
+}
+
 ul {
     list-style: square;
 }
