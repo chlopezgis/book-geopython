@@ -58,8 +58,16 @@ p, ul {
     font-size: 14px;
 }
 
-.prev-next-title{
-    text-align: center !important;
+.right-next .prev-next-title{
+    text-align: right !important;
+}
+
+.right-next .prev-next-title{
+    text-align: right !important;
+}
+
+.left-prev .prev-next-title{
+    text-align: left !important;
 }
 
 ul {
