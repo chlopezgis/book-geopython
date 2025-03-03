@@ -61,7 +61,7 @@ p, ul {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     line-height: 1.5;
     text-align: justify;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .right-next .prev-next-title{
@@ -177,6 +177,10 @@ tr:last-child {
 
     table {
         font-size: 11px !important;
+    }
+
+    .reference.internal.nav-link.active{
+        font-size: 10px;
     }
 }
 
