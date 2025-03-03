@@ -56,6 +56,10 @@ img {
     margin: auto;
 }
 
+.reference.internal.nav-link{
+    font-size: 14px;
+}
+
 /* Párrafos y listas */
 p, ul {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -120,6 +124,7 @@ tr:last-child {
 	max-width: 75%;
 }
 
+
 .extra_footer .social-links a img {
     width: 30px !important;
     filter: brightness(1.2); /* Resalta los íconos verdes */
@@ -179,8 +184,8 @@ tr:last-child {
         font-size: 11px !important;
     }
 
-    .reference.internal.nav-link.active{
-        font-size: 10px;
+    .reference.internal.nav-link{
+        font-size: 12px;
     }
 }
 
