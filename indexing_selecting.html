@@ -1,0 +1,1571 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Indexación y selección de datos &#8212; Geopython Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/templateArticles.css?v=5a26a4d9" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'indexing_selecting';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Ajustar puntos a la geometría más cercana" href="nearest_points.html" />
+    <link rel="prev" title="Lectura de datos Geoespaciales" href="read_file.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Geopython Book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Geopython Book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Bienvenido a GeoPython
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Geopandas</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="read_file.html"><strong>Lectura de datos Geoespaciales</strong></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Indexación y selección de datos</strong></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Aplicaciones</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="nearest_points.html"><strong>Ajustar puntos a la geometría más cercana</strong></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/chlopezgis/book-geopython" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/chlopezgis/book-geopython/issues/new?title=Issue%20on%20page%20%2Findexing_selecting.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/indexing_selecting.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Indexación y selección de datos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-con-operadores-de-indexacion"><strong>1. Selección con Operadores de Indexación</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-una-columna-especifica"><strong>1.1. Selección de una columna específica</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-multiples-columnas"><strong>1.2. Selección de multiples columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-condicion"><strong>1.3. Selección por condición</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrando-seleccion-por-condicion-y-columnas"><strong>1.3. Integrando selección por condición y columnas</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-etiqueta-loc"><strong>2. Selección por etiqueta <code class="docutils literal notranslate"><span class="pre">.loc</span></code></strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-filas"><strong>2.1. Selección de filas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-columnas"><strong>2.2. Selección de columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-filas-y-columnas"><strong>2.3. Selección de filas y columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>2.4. Selección por condición</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asignacion-de-nuevo-valores"><strong>2.5. Asignación de nuevo valores</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-posicion-iloc"><strong>3. Selección por posición <code class="docutils literal notranslate"><span class="pre">.iloc</span></code></strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-cuadro-delimitador-cx"><strong>4. Selección por cuadro delimitador <code class="docutils literal notranslate"><span class="pre">.cx</span></code></strong></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="indexacion-y-seleccion-de-datos">
+<h1><strong>Indexación y selección de datos</strong><a class="headerlink" href="#indexacion-y-seleccion-de-datos" title="Link to this heading">#</a></h1>
+<p><strong>GeoPandas</strong> hereda los métodos de <strong>Pandas</strong> para la <strong>indexación y selección de datos</strong>, lo que permite <strong>extraer subconjuntos</strong> de información según <strong>condiciones tabulares</strong>. Además, incorpora un <strong>método de selección espacial</strong> basado en coordenadas, que facilita la <strong>extracción de datos</strong> cuyas <strong>geometrías intersectan un cuadro delimitador</strong>.</p>
+<p>En este artículo, exploraremos en detalle estos métodos de selección y extracción de datos.</p>
+<p>Primero, importaremos las librerías necesarias y cargaremos los datos que utilizaremos en este tutorial.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># importar librerías</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ruta del archivo</span>
+<span class="n">uri</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;D:\Charlie\01_Cartografia\catastro.gpkg&#39;</span>
+
+<span class="c1"># Lectura como GeoDataFrame</span>
+<span class="n">puertas</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s1">&#39;puertas&#39;</span><span class="p">)</span>
+
+<span class="c1"># Visualizar las dos primera filas</span>
+<span class="n">puertas</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Veamos las columnas de esta capa:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">puertas</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;OBJECTID&#39;, &#39;CODIGOPREDIO&#39;, &#39;NUMEROLOTE&#39;, &#39;NUMEROPUERTA&#39;,
+       &#39;CODIGODISTRITO&#39;, &#39;CODIGOSEGMENTOVIA&#39;, &#39;CODIGOMANZANA&#39;,
+       &#39;CODIGOPUERTA&#39;, &#39;geometry&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="seleccion-con-operadores-de-indexacion">
+<h2><strong>1. Selección con Operadores de Indexación</strong><a class="headerlink" href="#seleccion-con-operadores-de-indexacion" title="Link to this heading">#</a></h2>
+<p><strong>GeoPandas</strong> permite seleccionar datos mediante los operadores <strong><code class="docutils literal notranslate"><span class="pre">[]</span></code></strong> y <strong><code class="docutils literal notranslate"><span class="pre">.</span></code></strong>, que facilitan el <strong>acceso a columnas específicas</strong> y la <strong>selección de subconjuntos mediante filtros condicionales</strong>. A continuación, exploramos su aplicación en detalle.</p>
+<section id="seleccion-de-una-columna-especifica">
+<h3><strong>1.1. Selección de una columna específica</strong><a class="headerlink" href="#seleccion-de-una-columna-especifica" title="Link to this heading">#</a></h3>
+<p>Podemos seleccionar una columna específica utilizando el operador <strong><code class="docutils literal notranslate"><span class="pre">[]</span></code></strong>, indicando su nombre. También es posible emplear el operador <strong><code class="docutils literal notranslate"><span class="pre">.</span></code></strong>, siempre que el nombre de la columna no contenga espacios ni caracteres especiales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionar la columna NUMEROPUERTA usando &quot;[]&quot;</span>
+<span class="n">puertas</span><span class="p">[</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     842
+1    811A
+2     930
+3     943
+4     971
+Name: NUMEROPUERTA, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionar la columna NUMEROPUERTA usando &quot;.&quot;</span>
+<span class="n">puertas</span><span class="o">.</span><span class="n">NUMEROPUERTA</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     842
+1    811A
+2     930
+3     943
+4     971
+Name: NUMEROPUERTA, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="seleccion-de-multiples-columnas">
+<h3><strong>1.2. Selección de multiples columnas</strong><a class="headerlink" href="#seleccion-de-multiples-columnas" title="Link to this heading">#</a></h3>
+<p>Para seleccionar múltiples columnas, usamos el operador <strong><code class="docutils literal notranslate"><span class="pre">[]</span></code></strong> e indicamos una lista con los nombres de las columnas a filtrar:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lista con las columnas a seleccionar. Tambien se </span>
+<span class="c1"># puede indicar directamente dentro del operador &quot;[]&quot;</span>
+<span class="n">cols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">,</span> <span class="s1">&#39;CODIGODISTRITO&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">]</span>
+
+<span class="c1"># Selección de columnas en base a la lista &quot;cols&quot;</span>
+<span class="n">puertas</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="c1"># tambien se puede usar la lista directamente:</span>
+<span class="c1"># puertas[[&#39;NUMEROPUERTA&#39;,&#39;CODIGODISTRITO&#39;,&#39;geometry&#39;]].head()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NUMEROPUERTA</th>
+      <th>CODIGODISTRITO</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>842</td>
+      <td>150132</td>
+      <td>POINT (282306.453 8669914.377)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>811A</td>
+      <td>150132</td>
+      <td>POINT (282245.352 8669863.459)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>930</td>
+      <td>150132</td>
+      <td>POINT (282501.278 8670013.832)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>943</td>
+      <td>150132</td>
+      <td>POINT (282505.574 8669977.579)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>971</td>
+      <td>150132</td>
+      <td>POINT (282560.12 8669989.886)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="seleccion-por-condicion">
+<h3><strong>1.3. Selección por condición</strong><a class="headerlink" href="#seleccion-por-condicion" title="Link to this heading">#</a></h3>
+<p>Para filtrar un subconjunto de datos, podemos <strong>aplicar una condición</strong> dentro del operador <strong><code class="docutils literal notranslate"><span class="pre">[]</span></code></strong>, seleccionando únicamente las filas que cumplan con el criterio especificado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Condición donde el codigo de distrito es &quot;150117&quot;</span>
+<span class="n">condicion</span> <span class="o">=</span> <span class="n">puertas</span><span class="o">.</span><span class="n">CODIGODISTRITO</span><span class="o">==</span><span class="s1">&#39;150117&#39;</span>
+
+<span class="c1"># Seleccionar solo los registros donde CODIGODISTRITO es &#39;150117&#39;</span>
+<span class="n">puertas_olivos</span> <span class="o">=</span> <span class="n">puertas</span><span class="p">[</span><span class="n">condicion</span><span class="p">]</span>
+
+<span class="c1"># Imprimir la cantidad de filas y columnas seleccionadas</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Fila y columnas: </span><span class="si">{</span><span class="n">puertas_olivos</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Visualizar las dos primeras filas:</span>
+<span class="n">puertas_olivos</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># La condición se puede aplicar directamente dentro del operador &quot;[]&quot;</span>
+<span class="c1">#puertas_olivos = puertas[puertas.CODIGODISTRITO==&#39;150117&#39;]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fila y columnas: (54408, 9)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>OBJECTID</th>
+      <th>CODIGOPREDIO</th>
+      <th>NUMEROLOTE</th>
+      <th>NUMEROPUERTA</th>
+      <th>CODIGODISTRITO</th>
+      <th>CODIGOSEGMENTOVIA</th>
+      <th>CODIGOMANZANA</th>
+      <th>CODIGOPUERTA</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>408797</th>
+      <td>594697</td>
+      <td>L18</td>
+      <td>0</td>
+      <td>S/N</td>
+      <td>150117</td>
+      <td>239440</td>
+      <td>44601.0</td>
+      <td>837603</td>
+      <td>POINT (273398.254 8671700.521)</td>
+    </tr>
+    <tr>
+      <th>408798</th>
+      <td>594698</td>
+      <td>L01</td>
+      <td>6</td>
+      <td>S/N</td>
+      <td>150117</td>
+      <td>239995</td>
+      <td>44593.0</td>
+      <td>837604</td>
+      <td>POINT (273837.064 8671477.364)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Mediante los operadores <strong>AND</strong> (<code class="docutils literal notranslate"><span class="pre">&amp;</span></code>) y <strong>OR</strong> (<code class="docutils literal notranslate"><span class="pre">|</span></code>), es posible combinar múltiples condiciones de búsqueda.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Condición 1: Registros cuyo CODIGODISTRITO es &#39;150117&#39;</span>
+<span class="n">conDist</span> <span class="o">=</span> <span class="n">puertas</span><span class="o">.</span><span class="n">CODIGODISTRITO</span><span class="o">==</span><span class="s1">&#39;150117&#39;</span>
+<span class="c1"># Condición 2: Registros cuyo NUMEROPUERTA es diferente a &quot;S/N&quot;</span>
+<span class="n">conPuerta</span> <span class="o">=</span> <span class="n">puertas</span><span class="o">.</span><span class="n">NUMEROPUERTA</span> <span class="o">!=</span> <span class="s1">&#39;S/N&#39;</span>
+
+<span class="c1"># Seleccionando por las condiciones:</span>
+<span class="n">puertas_olivos_names</span> <span class="o">=</span> <span class="n">puertas</span><span class="p">[</span><span class="n">conDist</span> <span class="o">&amp;</span> <span class="n">conPuerta</span><span class="p">]</span>
+
+<span class="c1"># Imprimir la cantidad de filas y columnas seleccionadas</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Fila y columnas: </span><span class="si">{</span><span class="n">puertas_olivos_names</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Visualizar las dos primeras filas:</span>
+<span class="n">puertas_olivos_names</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fila y columnas: (19970, 9)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>OBJECTID</th>
+      <th>CODIGOPREDIO</th>
+      <th>NUMEROLOTE</th>
+      <th>NUMEROPUERTA</th>
+      <th>CODIGODISTRITO</th>
+      <th>CODIGOSEGMENTOVIA</th>
+      <th>CODIGOMANZANA</th>
+      <th>CODIGOPUERTA</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>408847</th>
+      <td>594747</td>
+      <td>L13</td>
+      <td>None</td>
+      <td>319</td>
+      <td>150117</td>
+      <td>239305</td>
+      <td>44595.0</td>
+      <td>837653</td>
+      <td>POINT (273774.795 8671638.546)</td>
+    </tr>
+    <tr>
+      <th>408857</th>
+      <td>594757</td>
+      <td>L08</td>
+      <td>None</td>
+      <td>1888</td>
+      <td>150117</td>
+      <td>239193</td>
+      <td>44602.0</td>
+      <td>837663</td>
+      <td>POINT (273334.322 8671831.08)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="integrando-seleccion-por-condicion-y-columnas">
+<h3><strong>1.3. Integrando selección por condición y columnas</strong><a class="headerlink" href="#integrando-seleccion-por-condicion-y-columnas" title="Link to this heading">#</a></h3>
+<p>También es posible unificar la <strong>selección por condición y por columnas</strong> en una sola operación.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cols: Listado de columnas previamente declaradas</span>
+<span class="c1"># conDist y conPuerta: Condicions previamente declaradas</span>
+<span class="n">puertas_select</span> <span class="o">=</span> <span class="n">puertas</span><span class="p">[</span><span class="n">conDist</span> <span class="o">&amp;</span> <span class="n">conPuerta</span><span class="p">][</span><span class="n">cols</span><span class="p">]</span>
+
+<span class="c1"># Imprimir la cantidad de filas y columnas seleccionadas</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Fila y columnas: </span><span class="si">{</span><span class="n">puertas_select</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Visualizar las dos primeras filas:</span>
+<span class="n">puertas_select</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fila y columnas: (19970, 3)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NUMEROPUERTA</th>
+      <th>CODIGODISTRITO</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>408847</th>
+      <td>319</td>
+      <td>150117</td>
+      <td>POINT (273774.795 8671638.546)</td>
+    </tr>
+    <tr>
+      <th>408857</th>
+      <td>1888</td>
+      <td>150117</td>
+      <td>POINT (273334.322 8671831.08)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="seleccion-por-etiqueta-loc">
+<h2><strong>2. Selección por etiqueta <code class="docutils literal notranslate"><span class="pre">.loc</span></code></strong><a class="headerlink" href="#seleccion-por-etiqueta-loc" title="Link to this heading">#</a></h2>
+<p>La selección por etiqueta se realiza mediante el método <em>Pandas</em> <strong><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html">.loc</a></strong>, que permite <strong>acceder a filas y columnas a través de sus nombres de índice</strong>.</p>
+<p><strong>Sintaxis básica</strong>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>df.loc[fila, columna]</p>
+<ul class="simple">
+<li><p><strong>fila</strong>: Etiqueta o rango de etiquetas de las filas a seleccionar.</p></li>
+<li><p><strong>columna</strong>: Etiqueta o rango de etiquetas de las columnas a seleccionar.</p></li>
+</ul>
+</div>
+<section id="seleccion-de-filas">
+<h3><strong>2.1. Selección de filas</strong><a class="headerlink" href="#seleccion-de-filas" title="Link to this heading">#</a></h3>
+<p>Para seleccionar filas, basta con indicar su nombre, que por defecto es un número entero a menos que se haya especificado otro valor. Si no se indica ninguna columna, se seleccionarán todas por defecto.</p>
+<p>Para seleccionar un <strong>única fila</strong> solo indicamos su nombre dentro de <strong>loc</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OBJECTID                                                 66
+CODIGOPREDIO                                            L17
+NUMEROLOTE                                             None
+NUMEROPUERTA                                            528
+CODIGODISTRITO                                       150132
+CODIGOSEGMENTOVIA                                    159355
+CODIGOMANZANA                                       31811.0
+CODIGOPUERTA                                           3692
+geometry             POINT (282541.47200000007 8670064.495)
+Name: 5, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para seleccionar <strong>múltiples filas</strong>, se debe proporcionar una lista con sus nombres. Si los indices son valores enteros, es posible aplicar un <strong>slice</strong> para seleccionar un rango de filas. A continuación, exploramos ambos casos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionando un lista de filas</span>
+<span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">37</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>OBJECTID</th>
+      <th>CODIGOPREDIO</th>
+      <th>NUMEROLOTE</th>
+      <th>NUMEROPUERTA</th>
+      <th>CODIGODISTRITO</th>
+      <th>CODIGOSEGMENTOVIA</th>
+      <th>CODIGOMANZANA</th>
+      <th>CODIGOPUERTA</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>66</td>
+      <td>L17</td>
+      <td>None</td>
+      <td>528</td>
+      <td>150132</td>
+      <td>159355</td>
+      <td>31811.0</td>
+      <td>3692</td>
+      <td>POINT (282541.472 8670064.495)</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>71</td>
+      <td>L15</td>
+      <td>None</td>
+      <td>819A</td>
+      <td>150132</td>
+      <td>152388</td>
+      <td>31852.0</td>
+      <td>3697</td>
+      <td>POINT (282279.506 8669810.186)</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>98</td>
+      <td>L10</td>
+      <td>None</td>
+      <td>1029B</td>
+      <td>150132</td>
+      <td>156930</td>
+      <td>31818.0</td>
+      <td>3724</td>
+      <td>POINT (282732.879 8669959.43)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionando filas con un slice </span>
+<span class="c1"># (solo si los indices son números enteros)</span>
+<span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">40</span><span class="p">:</span><span class="mi">42</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>OBJECTID</th>
+      <th>CODIGOPREDIO</th>
+      <th>NUMEROLOTE</th>
+      <th>NUMEROPUERTA</th>
+      <th>CODIGODISTRITO</th>
+      <th>CODIGOSEGMENTOVIA</th>
+      <th>CODIGOMANZANA</th>
+      <th>CODIGOPUERTA</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>40</th>
+      <td>101</td>
+      <td>L10</td>
+      <td>None</td>
+      <td>547</td>
+      <td>150132</td>
+      <td>162589</td>
+      <td>31625.0</td>
+      <td>3727</td>
+      <td>POINT (281663.218 8670001.857)</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>102</td>
+      <td>L17</td>
+      <td>None</td>
+      <td>100</td>
+      <td>150132</td>
+      <td>155519</td>
+      <td>31625.0</td>
+      <td>3728</td>
+      <td>POINT (281605.177 8669902.147)</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>103</td>
+      <td>L47</td>
+      <td>None</td>
+      <td>S/N</td>
+      <td>150132</td>
+      <td>-1</td>
+      <td>31617.0</td>
+      <td>3729</td>
+      <td>POINT (281436.459 8669876.181)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="seleccion-de-columnas">
+<h3><strong>2.2. Selección de columnas</strong><a class="headerlink" href="#seleccion-de-columnas" title="Link to this heading">#</a></h3>
+<p>El método <strong><code class="docutils literal notranslate"><span class="pre">loc</span></code></strong> también permite seleccionar solo columnas. Para obtener todas las filas, se utiliza <strong><code class="docutils literal notranslate"><span class="pre">:</span></code></strong> en la posición correspondiente. Aplicado de esta forma, los resultados obtenidos son equivalentes a los generados mediante los operadores de indexación (<code class="docutils literal notranslate"><span class="pre">[]</span></code>).</p>
+<p>Selección de <strong>una única columna</strong>: “NUMEROPUERTA”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     842
+1    811A
+2     930
+Name: NUMEROPUERTA, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para seleccionar <strong>múltiples columnas</strong>, podemos proporcionar directamente una lista con sus nombres. Sin embargo, para mejorar la legibilidad del código, declararemos una variable cols que contenga dicha lista.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">,</span> <span class="s1">&#39;CODIGODISTRITO&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">]</span>
+<span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NUMEROPUERTA</th>
+      <th>CODIGODISTRITO</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>842</td>
+      <td>150132</td>
+      <td>POINT (282306.453 8669914.377)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>811A</td>
+      <td>150132</td>
+      <td>POINT (282245.352 8669863.459)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>930</td>
+      <td>150132</td>
+      <td>POINT (282501.278 8670013.832)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="seleccion-de-filas-y-columnas">
+<h3><strong>2.3. Selección de filas y columnas</strong><a class="headerlink" href="#seleccion-de-filas-y-columnas" title="Link to this heading">#</a></h3>
+<p>Una de las principales ventajas de <strong><code class="docutils literal notranslate"><span class="pre">loc</span></code></strong> es su capacidad para filtrar filas y columnas simultáneamente de forma intuitiva, utilizando etiquetas en ambas dimensiones. Esto facilita la aplicación de <strong>selecciones condicionales</strong> y la <strong>asignación de nuevos valores</strong>.</p>
+<p>Selección de <strong>una fila y una columna</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionando un lista de filas</span>
+<span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;528&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Selección de <strong>multiples filas y columnas</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;CODIGOPREDIO&#39;</span><span class="p">,</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CODIGOPREDIO</th>
+      <th>NUMEROPUERTA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>L17</td>
+      <td>528</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>L11</td>
+      <td>529</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>L10</td>
+      <td>535</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>L01</td>
+      <td>273</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Selección de <strong>múltiples filas y columnas</strong>, aplicando un slice para las filas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;CODIGOPREDIO&#39;</span><span class="p">,</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CODIGOPREDIO</th>
+      <th>NUMEROPUERTA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>L17</td>
+      <td>528</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>L11</td>
+      <td>529</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>L10</td>
+      <td>535</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>L01</td>
+      <td>273</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="id1">
+<h3><strong>2.4. Selección por condición</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Con <strong><code class="docutils literal notranslate"><span class="pre">loc</span></code></strong>, es posible realizar selecciones condicionales, filtrando filas que cumplen una determinada condición y mostrando únicamente las columnas de interés.</p>
+<p>A continuación, realizaremos una selección condicional para mostrar todas las filas donde <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code> no tiene nombre, mostrando únicamente las columnas <code class="docutils literal notranslate"><span class="pre">CODIGOPREDIO</span> <span class="pre">y</span> </code>NUMEROPUERTA`. Aplicaremos estas condiciones directamente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">puertas</span><span class="o">.</span><span class="n">NUMEROPUERTA</span> <span class="o">==</span> <span class="s1">&#39;S/N&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;CODIGOPREDIO&#39;</span><span class="p">,</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CODIGOPREDIO</th>
+      <th>NUMEROPUERTA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9</th>
+      <td>L16</td>
+      <td>S/N</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>L44</td>
+      <td>S/N</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>L19</td>
+      <td>S/N</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Al calcular estadísticas de completitud, el valor “S/N” se considera un dato válido. Sin embargo, no representa un número de puerta real, por lo que podemos depurarlo reemplazándolo por NaN. Esto permitirá obtener estadísticas de completitud más precisas.</p>
+<p>En el siguiente apartado, aplicaremos esta limpieza asignando valores a una columna específica.</p>
+</section>
+<section id="asignacion-de-nuevo-valores">
+<h3><strong>2.5. Asignación de nuevo valores</strong><a class="headerlink" href="#asignacion-de-nuevo-valores" title="Link to this heading">#</a></h3>
+<p>Una de las ventajas más relevantes de <strong><code class="docutils literal notranslate"><span class="pre">loc</span></code></strong> es su capacidad para asignar valores a una o varias columnas, siempre que las filas cumplan una determinada condición.</p>
+<p>En el apartado anterior, identificamos filas donde <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code> no tiene un valor válido, lo que puede afectar los análisis de completitud. En este ejemplo, reemplazaremos esos valores por <strong><code class="docutils literal notranslate"><span class="pre">NaN</span></code></strong> para mejorar la calidad de los datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reemplazando los NUMEROPUERTA sin nombre por NaN</span>
+<span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">puertas</span><span class="o">.</span><span class="n">NUMEROPUERTA</span> <span class="o">==</span> <span class="s1">&#39;S/N&#39;</span><span class="p">,</span> <span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="c1"># Verificando</span>
+<span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">puertas</span><span class="o">.</span><span class="n">NUMEROPUERTA</span><span class="o">.</span><span class="n">isna</span><span class="p">(),</span> <span class="p">[</span><span class="s1">&#39;CODIGOPREDIO&#39;</span><span class="p">,</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CODIGOPREDIO</th>
+      <th>NUMEROPUERTA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9</th>
+      <td>L16</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>L44</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>L19</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Del mismo modo, podemos crear una nueva columna, por ejemplo donde se guarde el dato si el número es par o impar:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Condicion para evaluar puertas pares</span>
+<span class="n">conPares</span> <span class="o">=</span> <span class="n">puertas</span><span class="o">.</span><span class="n">NUMEROPUERTA</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\d+)&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>\
+                  <span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">))])</span>
+
+<span class="c1"># Condicion para evaluar puertas impares</span>
+<span class="n">conNones</span> <span class="o">=</span> <span class="n">puertas</span><span class="o">.</span><span class="n">NUMEROPUERTA</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(\d+)&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>\
+                  <span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))])</span>
+
+<span class="c1"># Aplicando las condiciones para calcular un nuevo campo &quot;Paridad&quot;</span>
+<span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">conPares</span><span class="p">,</span><span class="s1">&#39;paridad&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Pares&#39;</span>
+<span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">conNones</span><span class="p">,</span><span class="s1">&#39;paridad&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Impares&#39;</span>
+
+<span class="c1"># Visualizando:</span>
+<span class="n">puertas</span><span class="p">[[</span><span class="s1">&#39;CODIGOPREDIO&#39;</span><span class="p">,</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">,</span><span class="s1">&#39;paridad&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CODIGOPREDIO</th>
+      <th>NUMEROPUERTA</th>
+      <th>paridad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>L38</td>
+      <td>842</td>
+      <td>Pares</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>L24</td>
+      <td>811A</td>
+      <td>Impares</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>L21</td>
+      <td>930</td>
+      <td>Pares</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>L13</td>
+      <td>943</td>
+      <td>Impares</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>L06</td>
+      <td>971</td>
+      <td>Impares</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>L17</td>
+      <td>528</td>
+      <td>Pares</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>L11</td>
+      <td>529</td>
+      <td>Impares</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>L10</td>
+      <td>535</td>
+      <td>Impares</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>L01</td>
+      <td>273</td>
+      <td>Impares</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>L16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="seleccion-por-posicion-iloc">
+<h2><strong>3. Selección por posición <code class="docutils literal notranslate"><span class="pre">.iloc</span></code></strong><a class="headerlink" href="#seleccion-por-posicion-iloc" title="Link to this heading">#</a></h2>
+<p>La selección por posición se realiza mediante el método <em>Pandas</em> <strong><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html">.iloc</a></strong>, que permite <strong>acceder a filas y columnas mediante índices enteros basados en su posición</strong>.</p>
+</section>
+<section id="seleccion-por-cuadro-delimitador-cx">
+<h2><strong>4. Selección por cuadro delimitador <code class="docutils literal notranslate"><span class="pre">.cx</span></code></strong><a class="headerlink" href="#seleccion-por-cuadro-delimitador-cx" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="read_file.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Lectura de datos Geoespaciales</strong></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="nearest_points.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>Ajustar puntos a la geometría más cercana</strong></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-con-operadores-de-indexacion"><strong>1. Selección con Operadores de Indexación</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-una-columna-especifica"><strong>1.1. Selección de una columna específica</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-multiples-columnas"><strong>1.2. Selección de multiples columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-condicion"><strong>1.3. Selección por condición</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrando-seleccion-por-condicion-y-columnas"><strong>1.3. Integrando selección por condición y columnas</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-etiqueta-loc"><strong>2. Selección por etiqueta <code class="docutils literal notranslate"><span class="pre">.loc</span></code></strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-filas"><strong>2.1. Selección de filas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-columnas"><strong>2.2. Selección de columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-filas-y-columnas"><strong>2.3. Selección de filas y columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>2.4. Selección por condición</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asignacion-de-nuevo-valores"><strong>2.5. Asignación de nuevo valores</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-posicion-iloc"><strong>3. Selección por posición <code class="docutils literal notranslate"><span class="pre">.iloc</span></code></strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-cuadro-delimitador-cx"><strong>4. Selección por cuadro delimitador <code class="docutils literal notranslate"><span class="pre">.cx</span></code></strong></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Charlie Lopez Rengifo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>&copy; 2025 Charlie Lopez Rengifo. Todos los derechos reservados.</p> <div class="social-links"> <a href="https://www.linkedin.com/in/chlopezgis/" target="_blank"><img src="_static/icons/linkedin.svg" alt="LinkedIn"></a> <a href="https://github.com/chlopezgis" target="_blank"><img src="_static/icons/github.svg" alt="GitHub"></a> </div>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
