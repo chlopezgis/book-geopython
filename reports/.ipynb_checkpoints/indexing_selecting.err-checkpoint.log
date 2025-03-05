@@ -30,9 +30,13 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-start = time.time()
-data = gpd.read_file(file, layer='puertas', engine="pyogrio")
-print("Tiempo con Pyogrio:", time.time() - start)
-print('Registros:', data.shape)
+# Ruta del archivo
+uri=r'D:\Charlie\01_Cartografia\catastro.gpkg'
+
+# Lectura como GeoDataFrame
+puertas = gpd.read_file(uri, layer='puertas')
+
+# Visualizar las dos primera filas
+puertas.head(2)
 -------------------
 

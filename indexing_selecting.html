@@ -434,12 +434,75 @@ document.write(`
 
 <span class="c1"># Lectura como GeoDataFrame</span>
 <span class="n">puertas</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s1">&#39;puertas&#39;</span><span class="p">)</span>
-
-<span class="c1"># Visualizar las dos primera filas</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualizar las dos primera filas</span>
 <span class="n">puertas</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>OBJECTID</th>
+      <th>CODIGOPREDIO</th>
+      <th>NUMEROLOTE</th>
+      <th>NUMEROPUERTA</th>
+      <th>CODIGODISTRITO</th>
+      <th>CODIGOSEGMENTOVIA</th>
+      <th>CODIGOMANZANA</th>
+      <th>CODIGOPUERTA</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>61</td>
+      <td>L38</td>
+      <td>None</td>
+      <td>842</td>
+      <td>150132</td>
+      <td>147461</td>
+      <td>31856.0</td>
+      <td>3687</td>
+      <td>POINT (282306.453 8669914.377)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>62</td>
+      <td>L24</td>
+      <td>None</td>
+      <td>811A</td>
+      <td>150132</td>
+      <td>147899</td>
+      <td>31856.0</td>
+      <td>3688</td>
+      <td>POINT (282245.352 8669863.459)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Veamos las columnas de esta capa:</p>
 <div class="cell docutils container">

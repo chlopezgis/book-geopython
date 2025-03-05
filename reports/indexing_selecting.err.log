@@ -35,8 +35,5 @@ uri=r'D:\Charlie\01_Cartografia\catastro.gpkg'
 
 # Lectura como GeoDataFrame
 puertas = gpd.read_file(uri, layer='puertas')
-
-# Visualizar las dos primera filas
-puertas.head(2)
 -------------------
 
