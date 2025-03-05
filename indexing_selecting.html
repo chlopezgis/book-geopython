@@ -1067,7 +1067,7 @@ Name: 5, dtype: object
 <section id="seleccion-de-columnas">
 <h3><strong>2.2. Selección de columnas</strong><a class="headerlink" href="#seleccion-de-columnas" title="Link to this heading">#</a></h3>
 <p>El método <strong><code class="docutils literal notranslate"><span class="pre">loc</span></code></strong> también permite seleccionar solo columnas. Para obtener todas las filas, se utiliza <strong><code class="docutils literal notranslate"><span class="pre">:</span></code></strong> en la posición correspondiente. Aplicado de esta forma, los resultados obtenidos son equivalentes a los generados mediante los operadores de indexación (<code class="docutils literal notranslate"><span class="pre">[]</span></code>).</p>
-<p>Selección de <strong>una única columna</strong>: “NUMEROPUERTA”</p>
+<p>Selección de <strong>una única columna</strong>: <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -1269,12 +1269,8 @@ Name: NUMEROPUERTA, dtype: object
 </section>
 <section id="id1">
 <h3><strong>2.4. Selección por condición</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<p>Con <strong><code class="docutils literal notranslate"><span class="pre">loc</span></code></strong>, es posible realizar selecciones condicionales, filtrando filas que cumplen una determinada condición y mostrando únicamente las columnas de interés.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>El método <strong><code class="docutils literal notranslate"><span class="pre">loc</span></code></strong> tambien <strong>admite múltiples condiciones</strong>, que pueden concatenarse con los operadores <strong>AND (&amp;)</strong> y <strong>OR (|)</strong>. Estas condiciones <strong>pueden definirse directamente</strong> o <strong>almacenarse en variables</strong> para mejorar la legibilidad del código.</p>
-</div>
-<p>A continuación, realizaremos una selección condicional para mostrar todas las filas donde <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code> no tiene nombre, mostrando únicamente las columnas <code class="docutils literal notranslate"><span class="pre">CODIGOPREDIO</span> <span class="pre">y</span> </code>NUMEROPUERTA`. Aplicaremos estas condiciones directamente:</p>
+<p>El método <strong><code class="docutils literal notranslate"><span class="pre">loc</span></code></strong> permite realizar selecciones condicionales y <strong>admite múltiples condiciones</strong>, las cuales pueden combinarse con los operadores <strong>AND</strong> (<code class="docutils literal notranslate"><span class="pre">&amp;</span></code>) y <strong>OR</strong> (<code class="docutils literal notranslate"><span class="pre">|</span></code>). Esto permite <strong>filtrar filas que cumplen una o varias condiciones</strong> y <strong>mostrar únicamente las columnas de interés</strong>. Para mejorar la legibilidad del código, las condiciones pueden definirse directamente o almacenarse en variables.</p>
+<p>A continuación, realizaremos una selección condicional para mostrar todas las filas donde <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code> no tiene nombre, mostrando únicamente las columnas <code class="docutils literal notranslate"><span class="pre">CODIGOPREDIO</span></code> y <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code>. Aplicaremos estas condiciones directamente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">puertas</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">puertas</span><span class="o">.</span><span class="n">NUMEROPUERTA</span> <span class="o">==</span> <span class="s1">&#39;S/N&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;CODIGOPREDIO&#39;</span><span class="p">,</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -1330,7 +1326,11 @@ Name: NUMEROPUERTA, dtype: object
 <section id="asignacion-de-nuevo-valores">
 <h3><strong>2.5. Asignación de nuevo valores</strong><a class="headerlink" href="#asignacion-de-nuevo-valores" title="Link to this heading">#</a></h3>
 <p>Una de las ventajas más relevantes de <strong><code class="docutils literal notranslate"><span class="pre">loc</span></code></strong> es su capacidad para asignar valores a una o varias columnas, siempre que las filas cumplan una determinada condición.</p>
-<p>En el apartado anterior, identificamos filas donde <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code> no tiene un valor válido, lo que puede afectar los análisis de completitud. En este ejemplo, reemplazaremos esos valores por <code class="docutils literal notranslate"><span class="pre">NaN</span></code> para mejorar la calidad de los datos.</p>
+<p>En el apartado anterior, identificamos las filas donde <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code> no tiene un valor válido, lo que puede afectar los análisis de completitud. En este ejemplo, reemplazaremos esos valores por <code class="docutils literal notranslate"><span class="pre">NaN</span></code> en la columna <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code> para mejorar la calidad de los datos.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Es importante especificar correctamente las columnas, ya que los cambios se aplicarán a todas las columnas que indiquemos. Si no se especifica la columna, la modificación afectará a todas las columnas del <strong>GeoDataFrame</strong>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reemplazando los NUMEROPUERTA sin nombre por NaN</span>
@@ -1498,6 +1498,15 @@ Name: NUMEROPUERTA, dtype: object
 <section id="seleccion-por-posicion-iloc">
 <h2><strong>3. Selección por posición <code class="docutils literal notranslate"><span class="pre">.iloc</span></code></strong><a class="headerlink" href="#seleccion-por-posicion-iloc" title="Link to this heading">#</a></h2>
 <p>La selección por posición se realiza mediante el método <em>Pandas</em> <strong><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html">.iloc</a></strong>, que permite <strong>acceder a filas y columnas mediante índices enteros basados en su posición</strong>.</p>
+<p><strong>Sintaxis básica</strong>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>df.loc[fila, columna]</p>
+<ul class="simple">
+<li><p><strong>fila</strong>: Etiqueta o rango de etiquetas de las filas a seleccionar.</p></li>
+<li><p><strong>columna</strong>: Etiqueta o rango de etiquetas de las columnas a seleccionar.</p></li>
+</ul>
+</div>
 </section>
 <section id="seleccion-por-cuadro-delimitador-cx">
 <h2><strong>4. Selección por cuadro delimitador <code class="docutils literal notranslate"><span class="pre">.cx</span></code></strong><a class="headerlink" href="#seleccion-por-cuadro-delimitador-cx" title="Link to this heading">#</a></h2>
