@@ -564,14 +564,9 @@ document.write(`
 <p>Para acceder a una columna específica, debemos indicar su <strong>etiqueta</strong> de la siguiente manera:</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Selección de columnas
-Para seleccionar una columna específica, usamos:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">column1</span><span class="p">]</span>
-
-<span class="n">Por</span> <span class="n">ejemplo</span><span class="p">,</span> <span class="n">para</span> <span class="n">seleccionar</span> <span class="n">la</span> <span class="n">columna</span> <span class="err">`</span><span class="n">NUMEROPUERTA</span><span class="err">`</span><span class="p">:</span>
-</pre></div>
+<p>df[column1]</p>
 </div>
-</div>
+<p>Por ejemplo, para seleccionar la columna <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionar la columna NUMEROPUERTA</span>
@@ -630,8 +625,9 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <section id="seleccion-de-multiples-columnas">
 <h4><strong>Selección de multiples columnas</strong><a class="headerlink" href="#seleccion-de-multiples-columnas" title="Link to this heading">#</a></h4>
 <p>Para seleccionar múltiples columnas, debemos proporcionar una <strong>lista con sus etiquetas</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">columnN</span><span class="p">]]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df[[column1, column2, …, columnN]]</p>
 </div>
 <p>Por ejemplo, así seleccionamos las columnas <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code>, <code class="docutils literal notranslate"><span class="pre">CODIGODISTRITO</span></code> y <code class="docutils literal notranslate"><span class="pre">geometry</span></code>:</p>
 <div class="cell docutils container">
@@ -742,8 +738,9 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <section id="seleccion-con-mascaras-boleanas">
 <h3><strong>1.2. Selección con máscaras boleanas</strong><a class="headerlink" href="#seleccion-con-mascaras-boleanas" title="Link to this heading">#</a></h3>
 <p>La selección con máscaras booleanas permite filtrar datos mediante <strong>expresiones lógicas</strong>. Se genera una <strong>Serie boleana</strong> donde <strong><code class="docutils literal notranslate"><span class="pre">True</span></code></strong> indica las <strong>filas a conservar</strong> y <strong><code class="docutils literal notranslate"><span class="pre">False</span></code></strong> las que <strong>se descartan</strong>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="o">&lt;</span><span class="n">expresiones_lógicas</span><span class="o">&gt;</span><span class="p">]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df[&lt;expresiones_lógicas&gt;]</p>
 </div>
 <p>Por ejemplo, para seleccionar las filas donde la edad sea mayor a 30, usamos <code class="docutils literal notranslate"><span class="pre">df[df['edad']</span> <span class="pre">&gt;</span> <span class="pre">30]</span></code>, donde la expresión <code class="docutils literal notranslate"><span class="pre">df['edad']</span> <span class="pre">&gt;</span> <span class="pre">30</span></code> genera una máscara booleana que mantiene únicamente las filas que cumplen esta condición.</p>
 <p>Ahora, seleccionemos las puertas cuyo código de distrito sea igual a “150117”:</p>
@@ -982,8 +979,9 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <section id="seleccion-de-una-fila-especifica">
 <h4><strong>Selección de una Fila Específica</strong><a class="headerlink" href="#seleccion-de-una-fila-especifica" title="Link to this heading">#</a></h4>
 <p>Para seleccionar una única fila, utilizamos:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row1</span><span class="p">]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.loc[row1]</p>
 </div>
 <p>Esto devuelve todos los valores de la fila con la etiqueta <code class="docutils literal notranslate"><span class="pre">row1</span></code>.</p>
 <div class="cell docutils container">
@@ -1012,8 +1010,9 @@ Name: 5, dtype: object
 <section id="seleccion-de-multiples-filas">
 <h4><strong>Selección de múltiples filas</strong><a class="headerlink" href="#seleccion-de-multiples-filas" title="Link to this heading">#</a></h4>
 <p>Para seleccionar múltiples filas, utilizamos:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="n">row1</span><span class="p">,</span> <span class="n">row2</span><span class="p">]]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.loc[[row1, row2]]</p>
 </div>
 <p>Retorna un <strong>subconjunto de datos</strong> que incluye las filas con las etiquetas <code class="docutils literal notranslate"><span class="pre">row1</span></code> y <code class="docutils literal notranslate"><span class="pre">row2</span></code>.</p>
 <div class="cell docutils container">
@@ -1098,8 +1097,9 @@ Name: 5, dtype: object
 <section id="seleccion-mediante-slicing">
 <h4><strong>Selección mediante <code class="docutils literal notranslate"><span class="pre">slicing</span></code></strong><a class="headerlink" href="#seleccion-mediante-slicing" title="Link to this heading">#</a></h4>
 <p>También podemos utilizar un <strong>rango de etiquetas</strong> de fila con <code class="docutils literal notranslate"><span class="pre">slicing</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rowA</span><span class="p">:</span><span class="n">rowN</span><span class="p">]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.loc[rowA:rowN]</p>
 </div>
 <p>Esto retorna un <strong>subconjunto de datos</strong> que incluye todas las filas desde la etiqueta <code class="docutils literal notranslate"><span class="pre">rowA</span></code> hasta <code class="docutils literal notranslate"><span class="pre">rowN</span></code>, incluyéndolas.</p>
 <div class="cell docutils container">
@@ -1188,8 +1188,9 @@ Name: 5, dtype: object
 <section id="id2">
 <h4><strong>Selección de una columna específica</strong><a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
 <p>Para seleccionar una única columna, utilizamos:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">column1</span><span class="p">]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.loc[:, column1]</p>
 </div>
 <p>Es necesario especificar las filas, pero podemos usar el operador <code class="docutils literal notranslate"><span class="pre">:</span></code> para seleccionar todas. Esto devuelve la columna <code class="docutils literal notranslate"><span class="pre">column1</span></code> con todos sus valores.</p>
 <div class="cell docutils container">
@@ -1220,8 +1221,9 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <section id="id3">
 <h4><strong>Selección de múltiples columnas</strong><a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <p>Para seleccionar múltiples columnas, pasamos una <strong>lista con sus etiquetas</strong> de la siguiente manera:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="p">]]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.loc[:, [column1, column2]]</p>
 </div>
 <p>Esto devuelve un subconjunto de datos con las columnas <code class="docutils literal notranslate"><span class="pre">column1</span></code> y <code class="docutils literal notranslate"><span class="pre">column2</span></code>.</p>
 <div class="cell docutils container">
@@ -1331,8 +1333,9 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <section id="id4">
 <h4><strong>Selección mediante <code class="docutils literal notranslate"><span class="pre">slicing</span></code></strong><a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <p>También podemos emplear un <strong>rango de etiquetas</strong> para seleccionar columnas mediante <code class="docutils literal notranslate"><span class="pre">slicing</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">columnA</span><span class="p">:</span><span class="n">columnN</span><span class="p">]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.loc[columnA:columnN]</p>
 </div>
 <p>Esto devuelve un <strong>subconjunto de datos</strong> que incluye todas las columnas desde <code class="docutils literal notranslate"><span class="pre">columnA</span></code> hasta <code class="docutils literal notranslate"><span class="pre">columnN</span></code>.</p>
 <div class="cell docutils container">
@@ -1445,8 +1448,9 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <section id="seleccion-de-una-fila-y-una-columna">
 <h4><strong>Selección de una fila y una columna</strong><a class="headerlink" href="#seleccion-de-una-fila-y-una-columna" title="Link to this heading">#</a></h4>
 <p>Para seleccionar un único valor, especificamos la <strong>etiqueta</strong> de la <strong>fila</strong> y la de la <strong>columna</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row1</span><span class="p">,</span> <span class="n">column1</span><span class="p">]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.loc[row1, column1]</p>
 </div>
 <p>Esto devuelve el valor específico ubicado en la <strong>intersección</strong> de la fila <code class="docutils literal notranslate"><span class="pre">row1</span></code> y la columna <code class="docutils literal notranslate"><span class="pre">column1</span></code>.</p>
 <div class="cell docutils container">
@@ -1467,8 +1471,9 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <section id="seleccion-de-mutiples-filas-y-columnas">
 <h4><strong>Selección de mútiples filas y columnas</strong><a class="headerlink" href="#seleccion-de-mutiples-filas-y-columnas" title="Link to this heading">#</a></h4>
 <p>Para seleccionar múltiples filas y columnas, debemos proporcionar una <strong>lista con sus etiquetas de índice</strong> en ambos ejes:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="n">row1</span><span class="p">,</span> <span class="n">row2</span><span class="p">],</span> <span class="p">[</span><span class="n">column1</span><span class="p">,</span> <span class="n">column2</span><span class="p">]]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.loc[[row1, row2], [column1, column2]]</p>
 </div>
 <p>Esto devuelve un subconjunto de datos que incluye únicamente las <strong>filas</strong> <code class="docutils literal notranslate"><span class="pre">row1</span></code> y <code class="docutils literal notranslate"><span class="pre">row2</span></code>, junto con las <strong>columnas</strong> <code class="docutils literal notranslate"><span class="pre">column1</span></code> y <code class="docutils literal notranslate"><span class="pre">column2</span></code>.</p>
 <div class="cell docutils container">
@@ -1529,8 +1534,9 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <section id="id5">
 <h4><strong>Selección mediante <code class="docutils literal notranslate"><span class="pre">slicing</span></code></strong><a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <p>También podemos emplear un <strong>rango de etiquetas</strong> para seleccionar <strong>filas</strong> y <strong>columnas</strong> mediante <code class="docutils literal notranslate"><span class="pre">slicing</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rowA</span><span class="p">:</span><span class="n">rowN</span><span class="p">,</span> <span class="n">columnA</span><span class="p">:</span><span class="n">columnN</span><span class="p">]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.loc[rowA:rowN, columnA:columnN]</p>
 </div>
 <p>Esto devuelve un <strong>subconjunto de datos</strong> que abarca las <strong>filas</strong> desde <code class="docutils literal notranslate"><span class="pre">rowA</span></code> hasta <code class="docutils literal notranslate"><span class="pre">rowN</span></code> y las <strong>columnas</strong> desde <code class="docutils literal notranslate"><span class="pre">columnA</span></code> hasta <code class="docutils literal notranslate"><span class="pre">columnN</span></code>, incluyéndolas.</p>
 <div class="cell docutils container">
@@ -1597,8 +1603,9 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <section id="id6">
 <h3><strong>2.4. Selección con máscaras boleanas</strong><a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p>El método  <strong><code class="docutils literal notranslate"><span class="pre">loc</span></code></strong> permite seleccionar datos utilizando máscaras booleanas, generadas a partir de <strong>expresiones lógicas</strong>. Estas devuelven una <strong>Serie boleana</strong> en la que <code class="docutils literal notranslate"><span class="pre">True</span></code> indica las <strong>filas a conservar</strong> y <code class="docutils literal notranslate"><span class="pre">False</span></code>, las <strong>filas a descartar</strong>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">&lt;</span><span class="n">expresiones_lógicas</span><span class="o">&gt;</span><span class="p">]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.loc[&lt;expresiones_lógicas&gt;]</p>
 </div>
 <p>A continuación, seleccionaremos todas las puertas sin número asignado y mostraremos únicamente las columnas <code class="docutils literal notranslate"><span class="pre">CODIGOPREDIO</span></code> y <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code>.</p>
 <div class="cell docutils container">
@@ -1722,8 +1729,9 @@ Name: NUMEROPUERTA, dtype: object
 <section id="asignacion-de-nuevo-valores">
 <h3><strong>2.5. Asignación de nuevo valores</strong><a class="headerlink" href="#asignacion-de-nuevo-valores" title="Link to this heading">#</a></h3>
 <p>Una de las principales ventajas de loc es su capacidad para asignar valores a una o varias columnas, siempre que las filas cumplan una determinada condición, es decir, aquellas donde las <strong>expresiones lógicas</strong> evalúe como <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">&lt;</span><span class="n">expresiones_lógicas</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">columnas_modificar</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">nuevo_valor</span><span class="o">&gt;</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.loc[&lt;expresiones_lógicas&gt;, &lt;columnas_modificar&gt;] = &lt;nuevo_valor&gt;</p>
 </div>
 <p>En el apartado anterior, identificamos las filas donde <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code> no tiene un valor válido, lo que puede afectar los análisis de completitud. En este ejemplo, reemplazaremos esos valores por <code class="docutils literal notranslate"><span class="pre">NaN</span></code> en la columna <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code> para mejorar la calidad de los datos.</p>
 <div class="admonition note">
@@ -1897,8 +1905,9 @@ Name: NUMEROPUERTA, dtype: object
 <section id="id8">
 <h4><strong>Selección de una Fila Específica</strong><a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
 <p>Para seleccionar una única fila, utilizamos:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.iloc[i]</p>
 </div>
 <p>Esto devuelve todos los valores de la fila en la posición <strong><code class="docutils literal notranslate"><span class="pre">i</span></code></strong>.</p>
 <div class="cell docutils container">
@@ -1927,8 +1936,9 @@ Name: 0, dtype: object
 <section id="id9">
 <h4><strong>Selección de múltiples filas</strong><a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
 <p>Para seleccionar múltiples filas, utilizamos:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">]]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.iloc[[i, j, k]]</p>
 </div>
 <p>Esto devuelve un <strong>subconjunto de datos</strong> con las filas en las posiciones <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">j</span></code> y <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p>
 <div class="cell docutils container">
@@ -2013,8 +2023,9 @@ Name: 0, dtype: object
 <section id="id10">
 <h4><strong>Selección mediante <code class="docutils literal notranslate"><span class="pre">slicing</span></code></strong><a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
 <p>También podemos utilizar un <strong>rango de indices</strong> para seleccionar filas mediante <code class="docutils literal notranslate"><span class="pre">slicing</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">k</span><span class="p">]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.iloc[i:k]</p>
 </div>
 <p>Esto devuelve un <strong>subconjunto de datos</strong> incluyendo las filas desde la posición <code class="docutils literal notranslate"><span class="pre">i</span></code> hasta <code class="docutils literal notranslate"><span class="pre">k-1</span></code>.</p>
 <div class="cell docutils container">
@@ -2115,8 +2126,9 @@ Name: 0, dtype: object
 <section id="id12">
 <h4><strong>Selección de una columna específica</strong><a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
 <p>Para seleccionar una única columna por su posición, usamos:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.iloc[:, i]</p>
 </div>
 <p>Esto devuelve la columna ubicada en la posición <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p>
 <div class="cell docutils container">
@@ -2147,8 +2159,9 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <section id="id13">
 <h4><strong>Selección de múltiples columnas</strong><a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
 <p>Para seleccionar múltiples columnas por su posición, pasamos una <strong>lista con sus índices</strong> de la siguiente manera:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.iloc[:, [i, j]]</p>
 </div>
 <p>Esto devuelve un <strong>subconjunto de datos</strong> con las columnas ubicadas en las posiciones <code class="docutils literal notranslate"><span class="pre">i</span></code> y <code class="docutils literal notranslate"><span class="pre">j</span></code>.</p>
 <div class="cell docutils container">
@@ -2259,8 +2272,9 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <section id="id14">
 <h4><strong>Selección mediante <code class="docutils literal notranslate"><span class="pre">slicing</span></code></strong><a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
 <p>También podemos emplear un <strong>rango de indices</strong> para seleccionar columnas mediante <code class="docutils literal notranslate"><span class="pre">slicing</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">:</span><span class="n">k</span><span class="p">]</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.iloc[:, i:k]</p>
 </div>
 <p>Esto devuelve un <strong>subconjunto de datos</strong> que incluye todas las columnas desde la fila <code class="docutils literal notranslate"><span class="pre">i</span></code> hasta <code class="docutils literal notranslate"><span class="pre">k-1</span></code>.</p>
 <div class="cell docutils container">
