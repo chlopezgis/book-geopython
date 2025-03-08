@@ -564,10 +564,14 @@ document.write(`
 <p>Para acceder a una columna específica, debemos indicar su <strong>etiqueta</strong> de la siguiente manera:</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>title=”Selección de una columna específica”
-df[column1]</p>
+<p>Selección de columnas
+Para seleccionar una columna específica, usamos:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">column1</span><span class="p">]</span>
+
+<span class="n">Por</span> <span class="n">ejemplo</span><span class="p">,</span> <span class="n">para</span> <span class="n">seleccionar</span> <span class="n">la</span> <span class="n">columna</span> <span class="err">`</span><span class="n">NUMEROPUERTA</span><span class="err">`</span><span class="p">:</span>
+</pre></div>
 </div>
-<p>Por ejemplo, para seleccionar la columna <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code>:</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionar la columna NUMEROPUERTA</span>
@@ -593,8 +597,9 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 </div>
 </div>
 <p>También podemos usar el operador <code class="docutils literal notranslate"><span class="pre">.</span></code>, siempre que el nombre de la columna no contenga espacios ni caracteres especiales.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">column1</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>df.column1</p>
 </div>
 <p>De esta forma, también podemos seleccionar la columna <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code>.</p>
 <div class="cell docutils container">
