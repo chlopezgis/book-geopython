@@ -500,6 +500,11 @@ document.write(`
 <p class="admonition-title">Selección de una columna específica</p>
 <h4 class="rubric" id="df-column1"><strong><code class="docutils literal notranslate"><span class="pre">df[column1]</span></code></strong></h4>
 <p><strong>Retorna</strong> la columna especificada</p>
+<p>Donde:</p>
+<ul class="simple">
+<li><p>df: Nombre del DataFrame</p></li>
+<li><p>column1: Etiqueta o nombre de la columna</p></li>
+</ul>
 </div>
 <p>También podemos usar el operador <code class="docutils literal notranslate"><span class="pre">.</span></code>, siempre que la etiqueta de la columna sea válida: <code class="docutils literal notranslate"><span class="pre">df.column1</span></code></p>
 <p>Selecionar la columna <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code></p>
@@ -535,6 +540,11 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <p class="admonition-title">Selección de multiples columnas</p>
 <h4 class="rubric" id="df-column1-column2-columnn"><strong><code class="docutils literal notranslate"><span class="pre">df[[column1,</span> <span class="pre">column2,</span> <span class="pre">...,</span> <span class="pre">columnN]]</span></code></strong></h4>
 <p><strong>Retorna</strong> los valores de las columnas especificadas.</p>
+<p>Donde:</p>
+<ul class="simple">
+<li><p>df: Nombre del DataFrame</p></li>
+<li><p>column1, column2, …, columnN: Etiquetas o nombres de las columnas</p></li>
+</ul>
 </div>
 <p>Seleccionar las columnas <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code> y <code class="docutils literal notranslate"><span class="pre">CODIGODISTRITO</span></code>:</p>
 <div class="cell docutils container">
@@ -636,6 +646,11 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <p class="admonition-title">Selección con máscaras boleanas</p>
 <h4 class="rubric" id="df-expresiones"><strong><code class="docutils literal notranslate"><span class="pre">df[&lt;expresiones&gt;]</span></code></strong></h4>
 <p><strong>Retorna</strong> los valores que cumplen las expresiones lógicas.</p>
+<p>Donde:</p>
+<ul class="simple">
+<li><p>df: Nombre del DataFrame.</p></li>
+<li><p><expresiones>: Expresiones lógicas que se evalua como True o False</p></li>
+</ul>
 </div>
 <p>Seleccionaremos las “puertas” cuyo <strong>código de distrito</strong> sea “150117” y que tengan un <strong>número de puerta válido</strong>.</p>
 <div class="cell docutils container">
