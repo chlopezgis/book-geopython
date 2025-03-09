@@ -493,15 +493,24 @@ document.write(`
 <p>Para acceder a una columna específica, debemos especificar la <strong>etiqueta</strong> dentro del operador <code class="docutils literal notranslate"><span class="pre">[]</span></code>. También podemos usar el operador <code class="docutils literal notranslate"><span class="pre">.</span></code>, siempre que la etiqueta de la columna sea válida</p>
 <div class="admonition-seleccion-de-una-columna-especifica admonition">
 <p class="admonition-title">Selección de una columna específica</p>
-<ul class="simple">
-<li><p>Usando el operador “[]”: df[column1]</p></li>
-<li><p>Usando el operado “.”: df.column1</p></li>
-</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```python
+df[column1]
+```
+
+```python
+df.column1
+```
+</pre></div>
+</div>
 </div>
 <p>Para seleccionar múltiples columnas, debemos proporcionar una <strong>lista con sus etiquetas</strong>:</p>
 <div class="admonition-seleccion-de-multiples-columnas admonition">
 <p class="admonition-title">Selección de multiples columnas</p>
-<p>df[[column1, column2, …, columnN]]</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```python
+df[[column1, column2, ..., columnN]]
+```
+</pre></div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
