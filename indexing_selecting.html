@@ -491,26 +491,10 @@ document.write(`
 <section id="seleccion-de-columnas">
 <h3><strong>1.1. Selección de columnas</strong><a class="headerlink" href="#seleccion-de-columnas" title="Link to this heading">#</a></h3>
 <p>Para acceder a una columna específica, debemos especificar la <strong>etiqueta</strong> dentro del operador <code class="docutils literal notranslate"><span class="pre">[]</span></code>. También podemos usar el operador <code class="docutils literal notranslate"><span class="pre">.</span></code>, siempre que la etiqueta de la columna sea válida</p>
-<div class="admonition-seleccion-de-una-columna-especifica admonition">
+<div class="tip admonition">
 <p class="admonition-title">Selección de una columna específica</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```python
-df[column1]
-```
-
-```python
-df.column1
-```
-</pre></div>
-</div>
-</div>
-<p>Para seleccionar múltiples columnas, debemos proporcionar una <strong>lista con sus etiquetas</strong>:</p>
-<div class="admonition-seleccion-de-multiples-columnas admonition">
-<p class="admonition-title">Selección de multiples columnas</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```python
-df[[column1, column2, ..., columnN]]
-```
-</pre></div>
-</div>
+<p>df[column1]</p>
+<p>df.column1</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -535,6 +519,11 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 </pre></div>
 </div>
 </div>
+</div>
+<p>Para seleccionar múltiples columnas, debemos proporcionar una <strong>lista con sus etiquetas</strong>:</p>
+<div class="tip admonition">
+<p class="admonition-title">Selección de multiples columnas</p>
+<p>df[[column1, column2, …, columnN]]</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
