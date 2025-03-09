@@ -498,9 +498,14 @@ document.write(`
 <p>Para acceder a una columna específica, debemos especificar la <strong>etiqueta</strong> dentro del operador <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Selección de una columna específica</p>
-<p>df[column1]</p>
+<p><strong>Sintaxis</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>`df[column1]`
+</pre></div>
 </div>
+<p><strong>Retorna</strong> la columna especificada</p>
 <p>También podemos usar el operador <code class="docutils literal notranslate"><span class="pre">.</span></code>, siempre que la etiqueta de la columna sea válida: <code class="docutils literal notranslate"><span class="pre">df.column1</span></code></p>
+</div>
+<p>Selecionar la columna <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionar la columna NUMEROPUERTA</span>
@@ -719,6 +724,20 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OBJECTID                                                 66
+CODIGOPREDIO                                            L17
+NUMEROLOTE                                             None
+NUMEROPUERTA                                            528
+CODIGODISTRITO                                       150132
+CODIGOSEGMENTOVIA                                    159355
+CODIGOMANZANA                                       31811.0
+CODIGOPUERTA                                           3692
+geometry             POINT (282541.47200000007 8670064.495)
+Name: 5, dtype: object
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="seleccion-de-multiples-filas">
@@ -736,6 +755,76 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>OBJECTID</th>
+      <th>CODIGOPREDIO</th>
+      <th>NUMEROLOTE</th>
+      <th>NUMEROPUERTA</th>
+      <th>CODIGODISTRITO</th>
+      <th>CODIGOSEGMENTOVIA</th>
+      <th>CODIGOMANZANA</th>
+      <th>CODIGOPUERTA</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>66</td>
+      <td>L17</td>
+      <td>None</td>
+      <td>528</td>
+      <td>150132</td>
+      <td>159355</td>
+      <td>31811.0</td>
+      <td>3692</td>
+      <td>POINT (282541.472 8670064.495)</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>71</td>
+      <td>L15</td>
+      <td>None</td>
+      <td>819A</td>
+      <td>150132</td>
+      <td>152388</td>
+      <td>31852.0</td>
+      <td>3697</td>
+      <td>POINT (282279.506 8669810.186)</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>98</td>
+      <td>L10</td>
+      <td>None</td>
+      <td>1029B</td>
+      <td>150132</td>
+      <td>156930</td>
+      <td>31818.0</td>
+      <td>3724</td>
+      <td>POINT (282732.879 8669959.43)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="seleccion-mediante-slicing">
@@ -759,6 +848,14 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <span class="err">```</span>
 
 <span class="n">Retorna</span> <span class="n">los</span> <span class="n">valores</span> <span class="n">desde</span> <span class="err">`</span><span class="n">columnA</span><span class="err">`</span> <span class="n">hasta</span> <span class="err">`</span><span class="n">columnN</span><span class="err">`</span><span class="p">,</span> <span class="n">incluyendolas</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+    <span class="n">Podemos</span> <span class="n">seleccionar</span> <span class="n">columnas</span> <span class="n">indicando</span> <span class="n">un</span> <span class="o">**</span><span class="n">rango</span> <span class="n">de</span> <span class="n">etiquetas</span><span class="o">**.</span>
+            <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
 </pre></div>
 </div>
 </div>
