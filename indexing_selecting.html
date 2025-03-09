@@ -498,11 +498,10 @@ document.write(`
 <p>Para acceder a una columna específica, debemos especificar la <strong>etiqueta</strong> dentro del operador <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Selección de una columna específica</p>
-<p><strong>Sintaxis</strong>:</p>
 <p><code class="docutils literal notranslate"><span class="pre">df[column1]</span></code></p>
 <p><strong>Retorna</strong> la columna especificada</p>
-<p><em>También podemos usar el operador <code class="docutils literal notranslate"><span class="pre">.</span></code>, siempre que la etiqueta de la columna sea válida: <code class="docutils literal notranslate"><span class="pre">df.column1</span></code></em></p>
 </div>
+<p>También podemos usar el operador <code class="docutils literal notranslate"><span class="pre">.</span></code>, siempre que la etiqueta de la columna sea válida: <code class="docutils literal notranslate"><span class="pre">df.column1</span></code></p>
 <p>Selecionar la columna <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -534,10 +533,7 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <p>Para seleccionar múltiples columnas, debemos proporcionar una <strong>lista con sus etiquetas</strong>:</p>
 <div class="tip admonition">
 <p class="admonition-title">Selección de multiples columnas</p>
-<p><strong>Sintaxis</strong></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>`df[[column1, column2, ..., columnN]]`
-</pre></div>
-</div>
+<p><code class="docutils literal notranslate"><span class="pre">df[[column1,</span> <span class="pre">column2,</span> <span class="pre">...,</span> <span class="pre">columnN]]</span></code></p>
 <p><strong>Retorna</strong> los valores de las columnas especificadas.</p>
 </div>
 <p>Seleccionar las columnas <code class="docutils literal notranslate"><span class="pre">NUMEROPUERTA</span></code> y <code class="docutils literal notranslate"><span class="pre">CODIGODISTRITO</span></code>:</p>
