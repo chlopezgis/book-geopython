@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Operadores de indexación &#8212; Geopython Book</title>
+    <title>Indexación y selección &#8212; Geopython Book</title>
   
   
   
@@ -183,8 +183,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Geopandas</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="read_file.html"><strong>Lectura de datos Geoespaciales</strong></a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Operadores de indexación</a></li>
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Indexación y selección</strong></a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Aplicaciones</span></p>
 <ul class="nav bd-sidenav">
@@ -374,7 +373,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Operadores de indexación</h1>
+    <h1>Indexación y selección</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -384,19 +383,29 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Operadores de indexación</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-columnas">Selección de columnas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-mascara">Selección por máscara</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-de-indexacion"><strong>1. Operadores de indexación</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-columnas"><strong>1.1. Selección de columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-mascara"><strong>1.2. Selección por máscara</strong></a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-etiqueta">Selección por Etiqueta</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-filas">Selección de filas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Selección de columnas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-filas-y-columnas">Selección de filas y columnas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-etiqueta"><strong>2. Selección por Etiqueta</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-filas"><strong>2.1. Selección de filas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>2.2. Selección de columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-filas-y-columnas"><strong>2.3. Selección de filas y columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>2.4. Selección por máscara</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actualizacion-de-valores"><strong>2.5. Actualización de valores</strong></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-posicion"><strong>3. Selección por Posición</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>3.1. Selección de filas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>3.2. Selección de columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><strong>3.3. Selección de filas y columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><strong>3.4. Selección por máscara</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"><strong>3.5. Actualización de valores</strong></a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-cuadro-delimitador"><strong>4. Selección por cuadro delimitador</strong></a></li>
+</ul>
             </nav>
         </div>
     </div>
@@ -407,10 +416,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="operadores-de-indexacion">
-<h1>Operadores de indexación<a class="headerlink" href="#operadores-de-indexacion" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="indexacion-y-seleccion">
+<h1><strong>Indexación y selección</strong><a class="headerlink" href="#indexacion-y-seleccion" title="Link to this heading">#</a></h1>
+<p>La indexación y selección son herramientas esenciales para acceder, filtrar y manipular datos de manera eficiente. Permiten optimizar el rendimiento al trabajar con grandes volúmenes de información, aplicar transformaciones de forma precisa y mejorar la velocidad en análisis de datos, incluyendo datos geoespaciales. Estas técnicas facilita la exploración y el procesamiento de datos, haciendo que nuestras tareas sean más rápidas y estructuradas.</p>
+<section id="operadores-de-indexacion">
+<h2><strong>1. Operadores de indexación</strong><a class="headerlink" href="#operadores-de-indexacion" title="Link to this heading">#</a></h2>
 <section id="seleccion-de-columnas">
-<h2>Selección de columnas<a class="headerlink" href="#seleccion-de-columnas" title="Link to this heading">#</a></h2>
+<h3><strong>1.1. Selección de columnas</strong><a class="headerlink" href="#seleccion-de-columnas" title="Link to this heading">#</a></h3>
 <div class="tip admonition">
 <p class="admonition-title">Seleccionar una única columna</p>
 <h4 class="rubric" id="df-col1"><strong><code class="docutils literal notranslate"><span class="pre">df[col1]</span></code></strong></h4>
@@ -421,7 +433,7 @@ document.write(`
 </div>
 </section>
 <section id="seleccion-por-mascara">
-<h2>Selección por máscara<a class="headerlink" href="#seleccion-por-mascara" title="Link to this heading">#</a></h2>
+<h3><strong>1.2. Selección por máscara</strong><a class="headerlink" href="#seleccion-por-mascara" title="Link to this heading">#</a></h3>
 <div class="tip admonition">
 <p class="admonition-title">Seleccionar por máscara</p>
 <h4 class="rubric" id="df-expression"><strong><code class="docutils literal notranslate"><span class="pre">df[&lt;expression&gt;]</span></code></strong></h4>
@@ -430,9 +442,9 @@ document.write(`
 </section>
 </section>
 <section id="seleccion-por-etiqueta">
-<h1>Selección por Etiqueta<a class="headerlink" href="#seleccion-por-etiqueta" title="Link to this heading">#</a></h1>
+<h2><strong>2. Selección por Etiqueta</strong><a class="headerlink" href="#seleccion-por-etiqueta" title="Link to this heading">#</a></h2>
 <section id="seleccion-de-filas">
-<h2>Selección de filas<a class="headerlink" href="#seleccion-de-filas" title="Link to this heading">#</a></h2>
+<h3><strong>2.1. Selección de filas</strong><a class="headerlink" href="#seleccion-de-filas" title="Link to this heading">#</a></h3>
 <div class="tip admonition">
 <p class="admonition-title">Seleccionar una única fila</p>
 <h4 class="rubric" id="df-loc-row1"><strong><code class="docutils literal notranslate"><span class="pre">df.loc[row1]</span></code></strong></h4>
@@ -447,7 +459,7 @@ document.write(`
 </div>
 </section>
 <section id="id1">
-<h2>Selección de columnas<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<h3><strong>2.2. Selección de columnas</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <div class="tip admonition">
 <p class="admonition-title">Seleccionar una única columna</p>
 <h4 class="rubric" id="df-loc-col1"><strong><code class="docutils literal notranslate"><span class="pre">df.loc[:,</span> <span class="pre">col1]</span></code></strong></h4>
@@ -458,11 +470,11 @@ document.write(`
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Seleccionar con slicing</p>
-<h4 class="rubric" id="df-loc-cola-coln"><strong><code class="docutils literal notranslate"><span class="pre">df.loc[:,</span> <span class="pre">colA:colN]]</span></code></strong></h4>
+<h4 class="rubric" id="df-loc-cola-coln"><strong><code class="docutils literal notranslate"><span class="pre">df.loc[:,</span> <span class="pre">colA:colN]</span></code></strong></h4>
 </div>
 </section>
 <section id="seleccion-de-filas-y-columnas">
-<h2>Selección de filas y columnas<a class="headerlink" href="#seleccion-de-filas-y-columnas" title="Link to this heading">#</a></h2>
+<h3><strong>2.3. Selección de filas y columnas</strong><a class="headerlink" href="#seleccion-de-filas-y-columnas" title="Link to this heading">#</a></h3>
 <div class="tip admonition">
 <p class="admonition-title">Seleccionar una fila y una columna</p>
 <h4 class="rubric" id="df-loc-row1-col1"><strong><code class="docutils literal notranslate"><span class="pre">df.loc[row1,</span> <span class="pre">col1]</span></code></strong></h4>
@@ -474,6 +486,100 @@ document.write(`
 <div class="tip admonition">
 <p class="admonition-title">Seleccionar con Slicing</p>
 <h4 class="rubric" id="df-loc-rowa-rown-cola-coln"><strong><code class="docutils literal notranslate"><span class="pre">df.loc[rowA:rowN,</span> <span class="pre">colA:colN]</span></code></strong></h4>
+</div>
+</section>
+<section id="id2">
+<h3><strong>2.4. Selección por máscara</strong><a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="tip admonition">
+<p class="admonition-title">Seleccionar por máscara</p>
+<h4 class="rubric" id="df-loc-expression"><strong><code class="docutils literal notranslate"><span class="pre">df.loc[&lt;expression&gt;]</span></code></strong></h4>
+<p>Donde <expression> es una condición booleana aplicada sobre el DataFrame, evaluando cada fila y devolviendo True para las filas que se seleccionarán.</p>
+</div>
+</section>
+<section id="actualizacion-de-valores">
+<h3><strong>2.5. Actualización de valores</strong><a class="headerlink" href="#actualizacion-de-valores" title="Link to this heading">#</a></h3>
+<div class="tip admonition">
+<p class="admonition-title">Actualización de un valor</p>
+<h4 class="rubric" id="df-loc-rowa1-col1-nuevo-valor"><strong><code class="docutils literal notranslate"><span class="pre">df.loc[rowA1,</span> <span class="pre">col1]</span> <span class="pre">=</span> <span class="pre">&lt;nuevo_valor&gt;</span></code></strong></h4>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Actualización con máscara</p>
+<h4 class="rubric" id="df-loc-expression-col1-nuevo-valor"><strong><code class="docutils literal notranslate"><span class="pre">df.loc[&lt;expression&gt;,</span> <span class="pre">&lt;col1&gt;]</span> <span class="pre">=</span> <span class="pre">&lt;nuevo_valor&gt;</span></code></strong></h4>
+</div>
+</section>
+</section>
+<section id="seleccion-por-posicion">
+<h2><strong>3. Selección por Posición</strong><a class="headerlink" href="#seleccion-por-posicion" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3><strong>3.1. Selección de filas</strong><a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="tip admonition">
+<p class="admonition-title">Seleccionar una única fila</p>
+<h4 class="rubric" id="df-iloc-i"><strong><code class="docutils literal notranslate"><span class="pre">df.iloc[i]</span></code></strong></h4>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Seleccionar múltiples filas</p>
+<h4 class="rubric" id="df-iloc-i-j-k"><strong><code class="docutils literal notranslate"><span class="pre">df.iloc[[i,</span> <span class="pre">j,</span> <span class="pre">k]]</span></code></strong></h4>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Seleccionar con slicing</p>
+<h4 class="rubric" id="df-iloc-i-k"><strong><code class="docutils literal notranslate"><span class="pre">df.iloc[i:k]</span></code></strong></h4>
+</div>
+</section>
+<section id="id4">
+<h3><strong>3.2. Selección de columnas</strong><a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="tip admonition">
+<p class="admonition-title">Seleccionar una única columna</p>
+<h4 class="rubric" id="df-iloc-m"><strong><code class="docutils literal notranslate"><span class="pre">df.iloc[:,</span> <span class="pre">m]</span></code></strong></h4>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Seleccionar múltiples columnas</p>
+<h4 class="rubric" id="df-iloc-m-n-p"><strong><code class="docutils literal notranslate"><span class="pre">df.iloc[:,</span> <span class="pre">[m,</span> <span class="pre">n,</span> <span class="pre">p]]</span></code></strong></h4>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Seleccionar con slicing</p>
+<h4 class="rubric" id="df-iloc-m-p"><strong><code class="docutils literal notranslate"><span class="pre">df.iloc[:,</span> <span class="pre">m:p]</span></code></strong></h4>
+</div>
+</section>
+<section id="id5">
+<h3><strong>3.3. Selección de filas y columnas</strong><a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<div class="tip admonition">
+<p class="admonition-title">Seleccionar una fila y una columna</p>
+<h4 class="rubric" id="df-iloc-i-m"><strong><code class="docutils literal notranslate"><span class="pre">df.iloc[i,</span> <span class="pre">m]</span></code></strong></h4>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Seleccionar múltiples filas y columnas</p>
+<h4 class="rubric" id="df-iloc-i-j-k-m-n-p"><strong><code class="docutils literal notranslate"><span class="pre">df.iloc[[i,</span> <span class="pre">j,</span> <span class="pre">k],</span> <span class="pre">[m,</span> <span class="pre">n,</span> <span class="pre">p]]</span></code></strong></h4>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Seleccionar con Slicing</p>
+<h4 class="rubric" id="df-iloc-i-k-m-p"><strong><code class="docutils literal notranslate"><span class="pre">df.iloc[i:k,</span> <span class="pre">m:p]</span></code></strong></h4>
+</div>
+</section>
+<section id="id6">
+<h3><strong>3.4. Selección por máscara</strong><a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<div class="tip admonition">
+<p class="admonition-title">Seleccionar por máscara</p>
+<h4 class="rubric" id="df-iloc-expression"><strong><code class="docutils literal notranslate"><span class="pre">df.iloc[&lt;expression&gt;]</span></code></strong></h4>
+<p>Donde <expression> es una condición booleana aplicada sobre el DataFrame, evaluando cada fila y devolviendo True para las filas que se seleccionarán.</p>
+</div>
+</section>
+<section id="id7">
+<h3><strong>3.5. Actualización de valores</strong><a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<div class="tip admonition">
+<p class="admonition-title">Actualización de un valor</p>
+<h4 class="rubric" id="df-iloc-i-m-nuevo-valor"><strong><code class="docutils literal notranslate"><span class="pre">df.iloc[i,</span> <span class="pre">m]</span> <span class="pre">=</span> <span class="pre">&lt;nuevo_valor&gt;</span></code></strong></h4>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Actualización con máscara</p>
+<h4 class="rubric" id="df-iloc-expression-m-nuevo-valor"><strong><code class="docutils literal notranslate"><span class="pre">df.iloc[&lt;expression&gt;,</span> <span class="pre">&lt;m&gt;]</span> <span class="pre">=</span> <span class="pre">&lt;nuevo_valor&gt;</span></code></strong></h4>
+</div>
+</section>
+</section>
+<section id="seleccion-por-cuadro-delimitador">
+<h2><strong>4. Selección por cuadro delimitador</strong><a class="headerlink" href="#seleccion-por-cuadro-delimitador" title="Link to this heading">#</a></h2>
+<div class="tip admonition">
+<p class="admonition-title">Actualización de un valor</p>
+<h4 class="rubric" id="gdf-cx-xmin-xmax-ymin-ymax"><strong><a class="reference external" href="http://gdf.cx">gdf.cx</a>[xmin:xmax, ymin:ymax]</strong></h4>
 </div>
 </section>
 </section>
@@ -542,19 +648,29 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Operadores de indexación</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-columnas">Selección de columnas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-mascara">Selección por máscara</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-de-indexacion"><strong>1. Operadores de indexación</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-columnas"><strong>1.1. Selección de columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-mascara"><strong>1.2. Selección por máscara</strong></a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-etiqueta">Selección por Etiqueta</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-filas">Selección de filas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Selección de columnas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-filas-y-columnas">Selección de filas y columnas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-etiqueta"><strong>2. Selección por Etiqueta</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-filas"><strong>2.1. Selección de filas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>2.2. Selección de columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-filas-y-columnas"><strong>2.3. Selección de filas y columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>2.4. Selección por máscara</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#actualizacion-de-valores"><strong>2.5. Actualización de valores</strong></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-posicion"><strong>3. Selección por Posición</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>3.1. Selección de filas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>3.2. Selección de columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><strong>3.3. Selección de filas y columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><strong>3.4. Selección por máscara</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"><strong>3.5. Actualización de valores</strong></a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-cuadro-delimitador"><strong>4. Selección por cuadro delimitador</strong></a></li>
+</ul>
   </nav></div>
 
 </div></div>
