@@ -384,9 +384,12 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-con-operadores-de-indexacion"><strong>1. Selección con Operadores de Indexación</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-columnas"><strong>1.1. Selección de columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-columnas"><strong>1.1. Selección de columnas</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccionar-una-columna-especifica"><strong>Seleccionar una columna específica</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccionar-multiples-columnas"><strong>Seleccionar múltiples columnas</strong></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-con-mascaras-boleanas"><strong>1.2. Selección con máscaras boleanas</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrando-seleccion-de-columnas-y-por-mascara-boleana"><strong>1.3. Integrando selección de columnas y por máscara boleana</strong></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-etiqueta-loc"><strong>2. Selección por etiqueta <code class="docutils literal notranslate"><span class="pre">.loc</span></code></strong></a><ul class="nav section-nav flex-column">
@@ -490,12 +493,14 @@ document.write(`
 <p>Los operadores de indexación de <em>Python</em> y <em>NumPy</em> <code class="docutils literal notranslate"><span class="pre">[]</span></code>, así como el operador de atributo <code class="docutils literal notranslate"><span class="pre">.</span></code>, proporcionan un acceso rápido y sencillo a las estructuras de datos de <em>pandas</em> en una amplia variedad de casos de uso. A continuación, se presentan las principales formas de selección en un <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
 <section id="seleccion-de-columnas">
 <h3><strong>1.1. Selección de columnas</strong><a class="headerlink" href="#seleccion-de-columnas" title="Link to this heading">#</a></h3>
-<p>Para acceder a una columna específica, debemos especificar la <strong>etiqueta</strong> dentro del operador <code class="docutils literal notranslate"><span class="pre">[]</span></code>. También podemos usar el operador <code class="docutils literal notranslate"><span class="pre">.</span></code>, siempre que la etiqueta de la columna sea válida</p>
+<section id="seleccionar-una-columna-especifica">
+<h4><strong>Seleccionar una columna específica</strong><a class="headerlink" href="#seleccionar-una-columna-especifica" title="Link to this heading">#</a></h4>
+<p>Para acceder a una columna específica, debemos especificar la <strong>etiqueta</strong> dentro del operador <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Selección de una columna específica</p>
 <p>df[column1]</p>
-<p>df.column1</p>
 </div>
+<p>También podemos usar el operador <code class="docutils literal notranslate"><span class="pre">.</span></code>, siempre que la etiqueta de la columna sea válida: <code class="docutils literal notranslate"><span class="pre">df.column1</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionar la columna NUMEROPUERTA</span>
@@ -520,15 +525,19 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 </div>
 </div>
 </div>
+</section>
+<section id="seleccionar-multiples-columnas">
+<h4><strong>Seleccionar múltiples columnas</strong><a class="headerlink" href="#seleccionar-multiples-columnas" title="Link to this heading">#</a></h4>
 <p>Para seleccionar múltiples columnas, debemos proporcionar una <strong>lista con sus etiquetas</strong>:</p>
 <div class="tip admonition">
 <p class="admonition-title">Selección de multiples columnas</p>
 <p>df[[column1, column2, …, columnN]]</p>
 </div>
+<p>Retorna los valores de las columnas especificadas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selección de columnas en base a una lista de etiquetas</span>
-<span class="n">puertas</span><span class="p">[[</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">,</span> <span class="s1">&#39;CODIGODISTRITO&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">]]</span>
+<span class="n">puertas</span><span class="p">[[</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">,</span> <span class="s1">&#39;CODIGODISTRITO&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -553,7 +562,6 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
       <th></th>
       <th>NUMEROPUERTA</th>
       <th>CODIGODISTRITO</th>
-      <th>geometry</th>
     </tr>
   </thead>
   <tbody>
@@ -561,35 +569,29 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
       <th>0</th>
       <td>842</td>
       <td>150132</td>
-      <td>POINT (282306.453 8669914.377)</td>
     </tr>
     <tr>
       <th>1</th>
       <td>811A</td>
       <td>150132</td>
-      <td>POINT (282245.352 8669863.459)</td>
     </tr>
     <tr>
       <th>2</th>
       <td>930</td>
       <td>150132</td>
-      <td>POINT (282501.278 8670013.832)</td>
     </tr>
     <tr>
       <th>3</th>
       <td>943</td>
       <td>150132</td>
-      <td>POINT (282505.574 8669977.579)</td>
     </tr>
     <tr>
       <th>4</th>
       <td>971</td>
       <td>150132</td>
-      <td>POINT (282560.12 8669989.886)</td>
     </tr>
     <tr>
       <th>...</th>
-      <td>...</td>
       <td>...</td>
       <td>...</td>
     </tr>
@@ -597,71 +599,49 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
       <th>2323691</th>
       <td>S/N</td>
       <td>150112</td>
-      <td>POINT (278698.773 8676598.118)</td>
     </tr>
     <tr>
       <th>2323692</th>
       <td>S/N</td>
       <td>150112</td>
-      <td>POINT (278682.456 8676625.591)</td>
     </tr>
     <tr>
       <th>2323693</th>
       <td>S/N</td>
       <td>150112</td>
-      <td>POINT (278677.124 8676632.768)</td>
     </tr>
     <tr>
       <th>2323694</th>
       <td>S/N</td>
       <td>150112</td>
-      <td>POINT (278670.622 8676643.207)</td>
     </tr>
     <tr>
       <th>2323695</th>
       <td>S/N</td>
       <td>150112</td>
-      <td>POINT (278666.108 8676648.642)</td>
     </tr>
   </tbody>
 </table>
-<p>2323696 rows × 3 columns</p>
+<p>2323696 rows × 2 columns</p>
 </div></div></div>
 </div>
 </section>
+</section>
 <section id="seleccion-con-mascaras-boleanas">
 <h3><strong>1.2. Selección con máscaras boleanas</strong><a class="headerlink" href="#seleccion-con-mascaras-boleanas" title="Link to this heading">#</a></h3>
-<p>La selección con máscaras booleanas permite filtrar datos mediante <strong>expresiones lógicas</strong>. Se genera una <strong>Serie boleana</strong> donde <strong><code class="docutils literal notranslate"><span class="pre">True</span></code></strong> indica las <strong>filas a conservar</strong> y <strong><code class="docutils literal notranslate"><span class="pre">False</span></code></strong> las que <strong>se descartan</strong>.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>df[&lt;expresiones_lógicas&gt;]</p>
+<p>La selección con máscaras booleanas permite filtrar datos mediante <strong>expresiones lógicas</strong>. Se genera una <strong>Serie boleana</strong> donde <strong><code class="docutils literal notranslate"><span class="pre">True</span></code></strong> indica las <strong>filas a conservar</strong> y <strong><code class="docutils literal notranslate"><span class="pre">False</span></code></strong> las que <strong>se descartan</strong>. Para combinar expresiones, usar &amp; (AND), | (OR) y ~ (NOT). Se recomienda utilizar paréntesis para definir la prioridad de evaluación.</p>
+<div class="tip admonition">
+<p class="admonition-title">Selección con máscaras boleanas</p>
+<p>df[<expresiones>]</p>
 </div>
-<p>Por ejemplo, para seleccionar las filas donde la edad sea mayor a 30, usamos <code class="docutils literal notranslate"><span class="pre">df[df['edad']</span> <span class="pre">&gt;</span> <span class="pre">30]</span></code>, donde la expresión <code class="docutils literal notranslate"><span class="pre">df['edad']</span> <span class="pre">&gt;</span> <span class="pre">30</span></code> genera una máscara booleana que mantiene únicamente las filas que cumplen esta condición.</p>
-<p>Ahora, seleccionemos las puertas cuyo código de distrito sea igual a “150117”:</p>
+<p>Retorna, solamente los valores que cumplen las expresiones lógicas.</p>
+<p>Por ejemplo, seleccionemos las “puertas” cuyo <strong>código de distrito</strong> sea “150117” y que tengan un <strong>número de puerta válido</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Máscara donde el codigo de distrito es &quot;150117&quot;</span>
-<span class="n">mascara</span> <span class="o">=</span> <span class="n">puertas</span><span class="p">[</span><span class="s1">&#39;CODIGODISTRITO&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;150117&#39;</span>
-
-<span class="c1"># Extración de los registros donde CODIGODISTRITO es &#39;150117&#39;</span>
-<span class="n">puertas_olivos</span> <span class="o">=</span> <span class="n">puertas</span><span class="p">[</span><span class="n">mascara</span><span class="p">]</span>
-
-<span class="c1"># Imprimir la cantidad de filas y columnas extraidas</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Fila y columnas: </span><span class="si">{</span><span class="n">puertas_olivos</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="c1"># Visualizar las dos primeras filas:</span>
-<span class="n">puertas_olivos</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Podemos combinar varias <strong>expresiones lógicas</strong> utilizando <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> (<strong>AND</strong>), <code class="docutils literal notranslate"><span class="pre">|</span></code> (<strong>OR</strong>) y <code class="docutils literal notranslate"><span class="pre">~</span></code> (<strong>NOT</strong>). Es importante usar paréntesis para definir la prioridad de evaluación. También es recomendable almacenar cada condición en una variable:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mask 1: Registros cuyo CODIGODISTRITO es &#39;150117&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CODIGODISTRITO es &#39;150117&#39;</span>
 <span class="n">maskDist</span> <span class="o">=</span> <span class="n">puertas</span><span class="o">.</span><span class="n">CODIGODISTRITO</span><span class="o">==</span><span class="s1">&#39;150117&#39;</span>
 
-<span class="c1"># Mask 2: Registros cuyo NUMEROPUERTA es diferente a &quot;S/N&quot;</span>
+<span class="c1"># NUMEROPUERTA válidos</span>
 <span class="n">maskPuerta</span> <span class="o">=</span> <span class="n">puertas</span><span class="o">.</span><span class="n">NUMEROPUERTA</span> <span class="o">!=</span> <span class="s1">&#39;S/N&#39;</span>
 
 <span class="c1"># Seleccionando por las condiciones:</span>
@@ -670,32 +650,51 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <span class="c1"># Imprimir la cantidad de filas y columnas seleccionadas</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Fila y columnas: </span><span class="si">{</span><span class="n">puertas_olivos_names</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="c1"># Visualizar las dos primeras filas:</span>
-<span class="n">puertas_olivos_names</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Ver las dos primeras filas y las columnas &#39;CODIGOPREDIO&#39; y &#39;NUMEROPUERTA&#39;:</span>
+<span class="n">puertas_olivos_names</span><span class="p">[[</span><span class="s1">&#39;CODIGOPREDIO&#39;</span><span class="p">,</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</div>
-</section>
-<section id="integrando-seleccion-de-columnas-y-por-mascara-boleana">
-<h3><strong>1.3. Integrando selección de columnas y por máscara boleana</strong><a class="headerlink" href="#integrando-seleccion-de-columnas-y-por-mascara-boleana" title="Link to this heading">#</a></h3>
-<p>Mediante operadores de indexación, podemos combinar la <strong>selección de columnas</strong> y el <strong>filtrado con máscaras booleanas</strong> en una sola operación.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lista de columnas a seleccionar</span>
-<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;NUMEROPUERTA&#39;</span><span class="p">,</span> <span class="s1">&#39;CODIGODISTRITO&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">]</span>
-
-<span class="c1"># Filtramos usando las variables &quot;maskDist&quot;, &quot;maskPuerta&quot; y &quot;cols&quot;</span>
-<span class="n">puertas_select</span> <span class="o">=</span> <span class="n">puertas</span><span class="p">[</span><span class="n">maskDist</span> <span class="o">&amp;</span> <span class="n">maskPuerta</span><span class="p">][</span><span class="n">cols</span><span class="p">]</span>
-
-<span class="c1"># Imprimir la cantidad de filas y columnas filtradas</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Fila y columnas: </span><span class="si">{</span><span class="n">puertas_select</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-<span class="c1"># Visualizar las dos primeras filas:</span>
-<span class="n">puertas_select</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fila y columnas: (19965, 9)
 </pre></div>
 </div>
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CODIGOPREDIO</th>
+      <th>NUMEROPUERTA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>408847</th>
+      <td>L13</td>
+      <td>319</td>
+    </tr>
+    <tr>
+      <th>408857</th>
+      <td>L08</td>
+      <td>1888</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 </section>
@@ -747,6 +746,23 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
 <p>df.loc[rowA:rowN]</p>
 </div>
 <p>Esto retorna un <strong>subconjunto de datos</strong> que incluye todas las filas desde la etiqueta <code class="docutils literal notranslate"><span class="pre">rowA</span></code> hasta <code class="docutils literal notranslate"><span class="pre">rowN</span></code>, incluyéndolas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#### **Selección mediante `slicing`**</span>
+
+<span class="n">Podemos</span> <span class="n">seleccionar</span> <span class="n">columnas</span> <span class="n">indicando</span> <span class="n">un</span> <span class="o">**</span><span class="n">rango</span> <span class="n">de</span> <span class="n">etiquetas</span><span class="o">**.</span>
+
+<span class="err">```</span><span class="p">{</span><span class="n">admonition</span><span class="p">}</span> <span class="n">Selección</span> <span class="n">de</span> <span class="n">columnas</span> <span class="n">mediante</span> <span class="n">slicing</span>
+<span class="p">:</span><span class="n">class</span><span class="p">:</span> <span class="n">tip</span>
+
+<span class="n">df</span><span class="p">[</span><span class="n">columnA</span><span class="p">:</span><span class="n">columnN</span><span class="p">]</span>
+<span class="err">```</span>
+
+<span class="n">Retorna</span> <span class="n">los</span> <span class="n">valores</span> <span class="n">desde</span> <span class="err">`</span><span class="n">columnA</span><span class="err">`</span> <span class="n">hasta</span> <span class="err">`</span><span class="n">columnN</span><span class="err">`</span><span class="p">,</span> <span class="n">incluyendolas</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionando etiquetas de filas con un slice </span>
@@ -1154,9 +1170,12 @@ Name: NUMEROPUERTA, Length: 2323696, dtype: object
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-con-operadores-de-indexacion"><strong>1. Selección con Operadores de Indexación</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-columnas"><strong>1.1. Selección de columnas</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-columnas"><strong>1.1. Selección de columnas</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccionar-una-columna-especifica"><strong>Seleccionar una columna específica</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccionar-multiples-columnas"><strong>Seleccionar múltiples columnas</strong></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-con-mascaras-boleanas"><strong>1.2. Selección con máscaras boleanas</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrando-seleccion-de-columnas-y-por-mascara-boleana"><strong>1.3. Integrando selección de columnas y por máscara boleana</strong></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-etiqueta-loc"><strong>2. Selección por etiqueta <code class="docutils literal notranslate"><span class="pre">.loc</span></code></strong></a><ul class="nav section-nav flex-column">
