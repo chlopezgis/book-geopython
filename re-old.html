@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Indexación y selección de datos &#8212; Geopython Book</title>
+    <title>2. Selección por etiqueta: .loc &#8212; Geopython Book</title>
   
   
   
@@ -373,7 +373,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Indexación y selección de datos</h1>
+    <h1>2. Selección por etiqueta: .loc</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -383,10 +383,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-de-indexacion"><strong>1. Operadores de Indexación</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-etiqueta-loc"><strong>2. Selección por etiqueta: <code class="docutils literal notranslate"><span class="pre">.loc</span></code></strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-posicion-iloc"><strong>3. Selección por posición <code class="docutils literal notranslate"><span class="pre">.iloc</span></code></strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>2. Selección por etiqueta: <code class="docutils literal notranslate"><span class="pre">.loc</span></code></strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-posicion-iloc"><strong>3. Selección por posición <code class="docutils literal notranslate"><span class="pre">.iloc</span></code></strong></a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -397,55 +397,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="indexacion-y-seleccion-de-datos">
-<h1><strong>Indexación y selección de datos</strong><a class="headerlink" href="#indexacion-y-seleccion-de-datos" title="Link to this heading">#</a></h1>
-<p>En el análisis geoespacial, la capacidad de filtrar, consultar y extraer información de grandes conjuntos de datos es fundamental, ya que permite <strong>optimizar</strong> la manipulación de datos espaciales, <strong>aislar</strong> regiones de interés y mejorar la <strong>eficiencia</strong> en los análisis. Estas operaciones no solo facilitan la exploración de datos, sino que también <strong>reducen la carga computacional</strong> al trabajar con información geográfica de gran escala.</p>
-<p>Para lograr esto, <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code> extiende las funcionalidades de <code class="docutils literal notranslate"><span class="pre">Pandas</span></code>, proporcionando métodos de <strong>indexación y selección</strong> que permiten <strong>extraer subconjuntos de datos</strong> de manera eficiente. En este artículo, exploraremos cómo realizar <strong>selecciones</strong> basadas en <strong>etiquetas</strong> y <strong>posiciones</strong>, así como la <strong>selección espacial</strong> basada en coordenadas, que facilita la extracción de datos cuyas geometrías intersectan un área delimitada. Estas herramientas son clave para estructurar consultas espaciales y optimizar el procesamiento de datos geográficos.</p>
-<p>Comenzaremos importando las librerías a utilizar</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># importar librerías</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Carguemos los datos.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ruta del archivo</span>
-<span class="n">uri</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;D:\Charlie\01_Cartografia\catastro.gpkg&#39;</span>
-
-<span class="c1"># Lectura como GeoDataFrame</span>
-<span class="n">puertas</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s1">&#39;puertas&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Veamos las columnas de esta capa:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">puertas</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;OBJECTID&#39;, &#39;CODIGOPREDIO&#39;, &#39;NUMEROLOTE&#39;, &#39;NUMEROPUERTA&#39;,
-       &#39;CODIGODISTRITO&#39;, &#39;CODIGOSEGMENTOVIA&#39;, &#39;CODIGOMANZANA&#39;,
-       &#39;CODIGOPUERTA&#39;, &#39;geometry&#39;], dtype=object)
-</pre></div>
-</div>
-</div>
-</div>
-<section id="operadores-de-indexacion">
-<h2><strong>1. Operadores de Indexación</strong><a class="headerlink" href="#operadores-de-indexacion" title="Link to this heading">#</a></h2>
-<p>Los operadores de indexación de <em>Python</em> y <em>NumPy</em> <code class="docutils literal notranslate"><span class="pre">[]</span></code>, así como el operador de atributo <code class="docutils literal notranslate"><span class="pre">.</span></code>, proporcionan un acceso rápido y sencillo a las estructuras de datos de <em>pandas</em> en una amplia variedad de casos de uso. A continuación, se presentan las principales formas de selección en un <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
-</section>
-<section id="seleccion-por-etiqueta-loc">
-<h2><strong>2. Selección por etiqueta: <code class="docutils literal notranslate"><span class="pre">.loc</span></code></strong><a class="headerlink" href="#seleccion-por-etiqueta-loc" title="Link to this heading">#</a></h2>
+  <section id="seleccion-por-etiqueta-loc">
+<h1><strong>2. Selección por etiqueta: <code class="docutils literal notranslate"><span class="pre">.loc</span></code></strong><a class="headerlink" href="#seleccion-por-etiqueta-loc" title="Link to this heading">#</a></h1>
 <p>La selección por etiqueta se realiza mediante el método <em>Pandas</em> <strong><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html">.loc</a></strong>, que permite <strong>acceder a filas y columnas</strong> a través de sus <strong>nombres de índice</strong>.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -516,9 +469,8 @@ document.write(`
 </div>
 </section>
 <section id="seleccion-por-posicion-iloc">
-<h2><strong>3. Selección por posición <code class="docutils literal notranslate"><span class="pre">.iloc</span></code></strong><a class="headerlink" href="#seleccion-por-posicion-iloc" title="Link to this heading">#</a></h2>
+<h1><strong>3. Selección por posición <code class="docutils literal notranslate"><span class="pre">.iloc</span></code></strong><a class="headerlink" href="#seleccion-por-posicion-iloc" title="Link to this heading">#</a></h1>
 <p>La selección por posición se realiza mediante el método <em>Pandas</em> <strong><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html">.iloc</a></strong>, que permite <strong>acceder a filas y columnas</strong> mediante <strong>índices enteros basados en su posición</strong>.</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -567,10 +519,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-de-indexacion"><strong>1. Operadores de Indexación</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-etiqueta-loc"><strong>2. Selección por etiqueta: <code class="docutils literal notranslate"><span class="pre">.loc</span></code></strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-posicion-iloc"><strong>3. Selección por posición <code class="docutils literal notranslate"><span class="pre">.iloc</span></code></strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>2. Selección por etiqueta: <code class="docutils literal notranslate"><span class="pre">.loc</span></code></strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-por-posicion-iloc"><strong>3. Selección por posición <code class="docutils literal notranslate"><span class="pre">.iloc</span></code></strong></a></li>
 </ul>
+
   </nav></div>
 
 </div></div>
