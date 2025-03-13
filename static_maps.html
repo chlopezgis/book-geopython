@@ -384,7 +384,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-librerias-necesarias"><strong>1. Instalación de Librerías Necesarias</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-basica-con-plot"><strong>2. Visualización básica con <code class="docutils literal notranslate"><span class="pre">plot</span></code></strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-basica-con-plot"><strong>2. Visualización básica con <code class="docutils literal notranslate"><span class="pre">plot</span></code></strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros-principales"><strong>Parámetros principales</strong></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -525,20 +528,40 @@ document.write(`
 </section>
 <section id="visualizacion-basica-con-plot">
 <h2><strong>2. Visualización básica con <code class="docutils literal notranslate"><span class="pre">plot</span></code></strong><a class="headerlink" href="#visualizacion-basica-con-plot" title="Link to this heading">#</a></h2>
+<p>El método <strong><a class="reference external" href="https://geopandas.org/en/latest/docs/reference/api/geopandas.GeoDataFrame.plot.html">plot</a></strong> de <em>GeoPandas</em> es una herramienta para visualizar datos geoespaciales de forma rápida y sencilla. Se basa en <em>Matplotlib</em> y permite representar geometrías almacenadas en un <em>GeoDataFrame</em> sin necesidad de configuraciones complejas.</p>
+<section id="parametros-principales">
+<h3><strong>Parámetros principales</strong><a class="headerlink" href="#parametros-principales" title="Link to this heading">#</a></h3>
+<p>Algunos de los parámetros más importantes para diseñar mapas con plot:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">column</span></code>: Define la columna del GeoDataFrame que se usará para colorear los elementos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmap</span></code>: Permite seleccionar una escala de colores cuando se usa column.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: Define el color uniforme de todas las geometrías.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">edgecolor</span></code>: Establece el color de los bordes de las geometrías.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linewidth</span></code>: Controla el grosor del borde de las geometrías.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">legend</span></code>: Activa la leyenda cuando se usa column para clasificación.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">markersize</span></code>: Se usa para definir el tamaño de los puntos en capas de puntos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alpha</span></code>: Controla la transparencia de las geometrías (0 = totalmente transparente, 1 = opaco).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">figsize</span></code>: Define el tamaño del gráfico en pulgadas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">categorical</span></code>: Especifica si los valores en column deben tratarse como categorías en lugar de valores continuos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">legend_kwds</span></code>: Permite personalizar la leyenda.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vmin</span></code> y <code class="docutils literal notranslate"><span class="pre">vmax</span></code>: Controlan los valores mínimo y máximo para la escala de colores.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">riesgo_sismico</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-                <span class="s1">&#39;riesgo&#39;</span><span class="p">,</span>        <span class="c1"># Atributo a representar</span>
-                <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdYlGn&#39;</span><span class="p">,</span>
-                <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>  <span class="c1"># Tamaño de la figura</span>
+                <span class="n">column</span><span class="o">=</span><span class="s1">&#39;riesgo&#39;</span><span class="p">,</span>    <span class="c1"># Atributo a representar</span>
+                <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdYlGn&#39;</span><span class="p">,</span>      <span class="c1"># Escala de colores</span>
+                <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span>      <span class="c1"># Tamaño del gráfico</span>
+                <span class="n">legend</span><span class="o">=</span><span class="kc">True</span>         <span class="c1"># Activar la leyenda</span>
             <span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e98eb650c88fc397aef5223780c20c69a1c98eb0c29251e742224d0347da0b64.png" src="_images/e98eb650c88fc397aef5223780c20c69a1c98eb0c29251e742224d0347da0b64.png" />
+<img alt="_images/aef0c865d10010de132ca71a722450ca61f0c4f3a2d60255b2fcbe97d8f132e1.png" src="_images/aef0c865d10010de132ca71a722450ca61f0c4f3a2d60255b2fcbe97d8f132e1.png" />
 </div>
 </div>
+</section>
 </section>
 </section>
 
@@ -589,7 +612,10 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-librerias-necesarias"><strong>1. Instalación de Librerías Necesarias</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-basica-con-plot"><strong>2. Visualización básica con <code class="docutils literal notranslate"><span class="pre">plot</span></code></strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-basica-con-plot"><strong>2. Visualización básica con <code class="docutils literal notranslate"><span class="pre">plot</span></code></strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros-principales"><strong>Parámetros principales</strong></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
